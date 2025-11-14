@@ -4,25 +4,25 @@ import Base from '@layouts/Base.astro';
 const runs = [
   {
     kind: 'release',
-    title: 'System boot: Echolia 0.1.0',
+    title: 'Echolia awakens: v0.1.0',
     date: '2024-01-12',
     tags: ['release', 'desktop'],
-    body: `Initial public build of the mind-room. Windows, macOS and Linux downloads are now live.`,
+    body: `The mind-room opens its doors. Quiet builds for Windows, macOS, and Linux—each a warm space for your drifting thoughts.`,
     highlight: true
   },
   {
     kind: 'log',
-    title: 'Analog sci-fi, not productivity SaaS',
+    title: 'Warm darkness, soft glow',
     date: '2024-01-05',
     tags: ['philosophy', 'design'],
-    body: `We tuned the interface to feel like a soft, cyber-analog console: deep backgrounds, echo-blue glows, and film grain instead of gradients.`
+    body: `We chose rose-pink luminescence over cold blue. Every surface breathes warmth. Every glow feels like memory, not machinery.`
   },
   {
     kind: 'blog',
-    title: 'First echo from the mind-room',
+    title: 'A room, not a tool',
     date: '2024-01-01',
     tags: ['blog', 'philosophy'],
-    body: `Why Echolia behaves like a quiet room for unfinished thoughts instead of a chat app.`,
+    body: `Echolia doesn't optimize or organize. It listens, echoes, and lets thoughts drift until they're ready to return.`,
     link: '/blog/first-echo'
   }
 ];
@@ -32,13 +32,15 @@ const runs = [
   <section class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pt-10 pb-16 md:pt-16">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,2.2fr)_minmax(260px,0.8fr)]">
       <div class="space-y-8">
-        <header class="mb-4 space-y-3">
-          <p class="text-xs uppercase tracking-[0.25em] text-text-muted/80">Run stream</p>
-          <h1 class="text-2xl md:text-3xl font-semibold text-text-main">
-            A dark, drifting mind-room for unfinished thoughts.
+        <header class="mb-6 space-y-4">
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-text-muted/70">
+            Mind stream
+          </p>
+          <h1 class="text-3xl md:text-4xl font-medium text-text-main leading-tight">
+            A warm, drifting space<br />for unfinished thoughts.
           </h1>
-          <p class="max-w-xl text-sm text-text-muted">
-            Not a chat window. Not a task list. Echolia is a quiet, analog sci-fi console where thoughts arrive, drift, and echo back later.
+          <p class="max-w-xl text-base md:text-lg text-text-muted leading-relaxed">
+            Not a tool. Not a product. Echolia is a quiet mind-room where thoughts arrive softly, drift in warm darkness, and echo back when they're ready.
           </p>
         </header>
 
@@ -52,8 +54,8 @@ const runs = [
             >
               <div class="flex items-start justify-between gap-4">
                 <div class="space-y-2">
-                  <div class="flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-text-muted/80">
-                    <span class="inline-flex h-1.5 w-1.5 rounded-full bg-accent-echo" />
+                  <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted/70">
+                    <span class="inline-flex h-1.5 w-1.5 rounded-full bg-accent-pink" />
                     <span>{run.kind}</span>
                   </div>
                   <h2 class="text-base md:text-lg font-medium text-text-main">
@@ -72,10 +74,10 @@ const runs = [
                   {run.link && (
                     <a
                       href={run.link}
-                      class="inline-flex items-center gap-1 text-xs text-accent-echo/80 hover:text-accent-echo transition-colors"
+                      class="inline-flex items-center gap-1 font-mono text-xs text-accent-pink/80 hover:text-accent-pink transition-colors"
                     >
-                      <span>Open log</span>
-                      <span aria-hidden="true">↗</span>
+                      <span>Read more</span>
+                      <span aria-hidden="true">→</span>
                     </a>
                   )}
                 </div>
@@ -99,15 +101,18 @@ const runs = [
 
       <aside
         id="downloads"
-        class="lg:sticky lg:top-28 h-max rounded-thought border border-white/7 bg-gradient-to-b from-white/5 to-black/40 p-4 md:p-5 backdrop-blur-xl"
+        class="lg:sticky lg:top-28 h-max border border-white/7 bg-gradient-to-b from-white/5 to-black/40 p-5 md:p-6 backdrop-blur-xl"
+        style="border-radius: var(--radius-card);"
       >
-        <div class="mb-4 space-y-1">
-          <p class="text-xs uppercase tracking-[0.22em] text-text-muted/80">Get Echolia</p>
-          <h2 class="text-sm md:text-base text-text-main/90">
-            Install the mind-room on your machines.
+        <div class="mb-5 space-y-2">
+          <p class="font-mono text-xs uppercase tracking-[0.22em] text-text-muted/70">
+            Enter the room
+          </p>
+          <h2 class="text-base md:text-lg text-text-main/95 font-medium">
+            Install Echolia
           </h2>
-          <p class="text-xs text-text-muted">
-            Desktop builds for Windows, macOS, Linux, plus mobile.
+          <p class="text-sm text-text-muted leading-relaxed">
+            Available for Windows, macOS, Linux, and mobile devices.
           </p>
         </div>
 
@@ -150,8 +155,8 @@ const runs = [
             </a>
           </div>
 
-          <p class="pt-2 text-[11px] text-text-muted leading-relaxed">
-            Replace the placeholders above with real URLs for your Windows, macOS, Linux and mobile builds. The cards will stay pinned as you scroll the run stream.
+          <p class="pt-2 font-mono text-[11px] text-text-muted/60 leading-relaxed">
+            Each build is a doorway. Choose your platform and step inside.
           </p>
         </div>
       </aside>
