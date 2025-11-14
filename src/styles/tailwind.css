@@ -1,0 +1,48 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-bg-deep text-text-main;
+  }
+
+  body {
+    @apply min-h-screen font-sans antialiased;
+  }
+
+  ::selection {
+    background: rgba(111, 168, 255, 0.25);
+  }
+}
+
+@layer components {
+  .thought-card {
+    @apply bg-bg-surface rounded-thought border border-[var(--color-border-faint)] shadow-thought p-4 md:p-5 transition-transform transition-shadow duration-200 ease-out;
+  }
+
+  .thought-card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/40 hover:bg-bg-alt hover:bg-opacity-80;
+  }
+
+  .tag-chip {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide bg-tag-bg text-tag-text border border-tag-border;
+  }
+
+  .tag-chip-active {
+    @apply bg-tag-bg-active text-tag-text-active border-tag-border;
+  }
+
+  .fab-ghost {
+    @apply inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-text-main text-opacity-90 backdrop-blur-md active:scale-[0.98] transition;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .fab-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}

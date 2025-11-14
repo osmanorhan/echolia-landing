@@ -1,0 +1,64 @@
+---
+import Base from '@layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const title = `${post.data.title} — Echolia Blog`;
+const description = post.data.description ?? 'A note from the Echolia mind-room.';
+---
+
+<Base {title} {description}>
+  <article class="mx-auto max-w-3xl px-4 pt-12 pb-16 md:pt-16">
+    <header class="mb-8 space-y-3">
+      <p class="text-xs uppercase tracking-[0.25em] text-text-muted/80">Blog</p>
+      <h1 class="text-2xl md:text-3xl font-semibold text-text-main">
+        {post.data.title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-3 text-xs text-text-muted">
+        <time datetime={post.data.pubDate.toISOString()} class="font-mono">
+          {post.data.pubDate.toISOString().slice(0, 10)}
+        </time>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-1.5">
+            {post.data.tags.map((tag) => (
+              <span class="tag-chip" data-tag={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class="prose prose-invert prose-sm md:prose-base max-w-none prose-headings:text-text-main prose-p:text-text-main/90 prose-strong:text-text-main prose-a:text-accent-echo hover:prose-a:text-accent-echo/80 prose-code:font-mono prose-code:text-accent-cyan prose-pre:bg-[#0E161D] prose-pre:border-l-2 prose-pre:border-accent-cyan/80 prose-pre:text-[13px] prose-pre:leading-relaxed">
+      <Content />
+    </div>
+
+    <nav class="mt-10 flex justify-between text-xs text-text-muted/80">
+      <a href="/blog" class="hover:text-accent-echo transition-colors">
+        ← Back to all echoes
+      </a>
+      <a href="/" class="hover:text-accent-echo transition-colors">
+        Back to run stream →
+      </a>
+    </nav>
+  </article>
+</Base>
