@@ -1,0 +1,310 @@
+---
+// ASCIIMindSpace - Immersive ASCII art terminal representing the mental model
+---
+
+<div class="ascii-mindspace">
+  <canvas id="ascii-canvas"></canvas>
+  <div class="mindspace-overlay">
+    <div class="terminal-header">
+      <span class="terminal-prompt">echolia@mindroom:~$</span>
+      <span class="cursor-blink">_</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const canvas = document.getElementById('ascii-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+
+  let width = window.innerWidth;
+  let height = Math.min(700, window.innerHeight * 0.85);
+
+  canvas.width = width;
+  canvas.height = height;
+
+  // ASCII characters for the rain
+  const chars = '·∘○◦~※⊹⋆✧✦★☆▪▫□■◇◆△▲▽▼';
+  const fontSize = 14;
+  const columns = Math.floor(width / fontSize);
+
+  // Matrix rain drops
+  const drops: number[] = [];
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -100;
+  }
+
+  // Thought fragments that appear
+  const thoughts = [
+    'memory drifts...',
+    'echo returns',
+    'thought loop',
+    'unfinished',
+    'warm darkness',
+    'mind-room',
+    'recursive echo',
+    'fragment',
+    'whisper',
+    'glow',
+  ];
+
+  let thoughtFragments: Array<{
+    text: string;
+    x: number;
+    y: number;
+    alpha: number;
+    speed: number;
+    color: string;
+  }> = [];
+
+  // Spawn thought fragments randomly
+  function spawnThought() {
+    if (Math.random() < 0.02 && thoughtFragments.length < 8) {
+      thoughtFragments.push({
+        text: thoughts[Math.floor(Math.random() * thoughts.length)],
+        x: Math.random() * width,
+        y: Math.random() * height,
+        alpha: 0,
+        speed: 0.5 + Math.random() * 0.5,
+        color: Math.random() > 0.5 ? '#FF3E8E' : '#4CD7D0'
+      });
+    }
+  }
+
+  // Central ASCII art (rotating spiral/mind symbol)
+  let spiralRotation = 0;
+  const spiralChars = ['╭', '─', '╮', '│', '◦', '│', '╰', '─', '╯'];
+
+  function drawCentralSpiral() {
+    spiralRotation += 0.005;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = 80;
+
+    ctx.save();
+    ctx.translate(centerX, centerY);
+
+    // Draw pulsing glow
+    const pulseSize = Math.sin(Date.now() * 0.001) * 10 + 40;
+    const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, pulseSize);
+    gradient.addColorStop(0, 'rgba(255, 62, 142, 0.3)');
+    gradient.addColorStop(0.5, 'rgba(76, 215, 208, 0.15)');
+    gradient.addColorStop(1, 'rgba(255, 62, 142, 0)');
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(-pulseSize, -pulseSize, pulseSize * 2, pulseSize * 2);
+
+    // Draw rotating spiral characters
+    for (let i = 0; i < 16; i++) {
+      const angle = (i / 16) * Math.PI * 2 + spiralRotation;
+      const r = radius + Math.sin(i * 0.5 + spiralRotation * 10) * 15;
+      const x = Math.cos(angle) * r;
+      const y = Math.sin(angle) * r;
+
+      const charIndex = Math.floor(i / 2) % spiralChars.length;
+      const char = spiralChars[charIndex];
+
+      // Alternate colors
+      const hue = i % 2 === 0 ? '#FF3E8E' : '#4CD7D0';
+
+      ctx.font = `${fontSize * 1.5}px "IBM Plex Mono", monospace`;
+      ctx.fillStyle = hue;
+      ctx.shadowColor = hue;
+      ctx.shadowBlur = 20;
+      ctx.fillText(char, x, y);
+    }
+
+    ctx.restore();
+  }
+
+  function draw() {
+    // Fade effect for trail
+    ctx.fillStyle = 'rgba(10, 6, 8, 0.08)';
+    ctx.fillRect(0, 0, width, height);
+
+    // Matrix rain
+    ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+
+      // Alternate pink and cyan colors
+      const colorChoice = Math.sin(i * 0.5 + Date.now() * 0.0001) > 0;
+      const color = colorChoice ? '#FF3E8E' : '#4CD7D0';
+      const alpha = Math.random() * 0.5 + 0.3;
+
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8;
+      ctx.globalAlpha = alpha;
+      ctx.fillText(char, x, y);
+      ctx.globalAlpha = 1;
+
+      // Reset drop or move down
+      if (y > height && Math.random() > 0.95) {
+        drops[i] = 0;
+      }
+      drops[i] += 0.3 + Math.random() * 0.3;
+    }
+
+    // Draw central spiral
+    drawCentralSpiral();
+
+    // Draw and update thought fragments
+    thoughtFragments = thoughtFragments.filter(thought => {
+      // Fade in and out
+      if (thought.alpha < 1) {
+        thought.alpha += 0.01;
+      } else if (thought.alpha >= 1 && Math.random() < 0.005) {
+        thought.alpha -= 0.02;
+      }
+
+      if (thought.alpha <= 0) return false;
+
+      // Drift
+      thought.y -= thought.speed;
+      thought.x += Math.sin(thought.y * 0.01) * 0.5;
+
+      // Draw
+      ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
+      ctx.fillStyle = thought.color;
+      ctx.shadowColor = thought.color;
+      ctx.shadowBlur = 15;
+      ctx.globalAlpha = thought.alpha * 0.7;
+      ctx.fillText(thought.text, thought.x, thought.y);
+      ctx.globalAlpha = 1;
+
+      return true;
+    });
+
+    // Spawn new thoughts
+    spawnThought();
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // Handle resize
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = Math.min(700, window.innerHeight * 0.85);
+    canvas.width = width;
+    canvas.height = height;
+  });
+</script>
+
+<style>
+  .ascii-mindspace {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    max-height: 85vh;
+    background: linear-gradient(180deg, #0A0608 0%, #110A0D 50%, #0A0608 100%);
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  #ascii-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+  }
+
+  .mindspace-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .terminal-header {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: #4CD7D0;
+    text-shadow: 0 0 10px #4CD7D0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .terminal-prompt {
+    opacity: 0.8;
+  }
+
+  .cursor-blink {
+    animation: blink 1s steps(2, start) infinite;
+    color: #FF3E8E;
+  }
+
+  @keyframes blink {
+    to {
+      opacity: 0;
+    }
+  }
+
+  /* Scanline effect */
+  .ascii-mindspace::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.3;
+  }
+
+  /* CRT glow effect */
+  .ascii-mindspace::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 62, 142, 0.05) 0%,
+      rgba(76, 215, 208, 0.03) 50%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  @media (max-width: 768px) {
+    .ascii-mindspace {
+      height: 500px;
+    }
+
+    .terminal-header {
+      font-size: 0.75rem;
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor-blink {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

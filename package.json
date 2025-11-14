@@ -10,7 +10,10 @@
     "lint": "echo \"No lint configured\""
   },
   "dependencies": {
-    "astro": "^4.0.0"
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
+    "astro": "^4.0.0",
+    "three": "^0.181.1"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.0.0",
@@ -20,4 +23,3 @@
     "typescript": "^5.0.0"
   }
 }
-
