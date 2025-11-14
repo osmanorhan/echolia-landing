@@ -1,5 +1,6 @@
 ---
 import Base from '@layouts/Base.astro';
+import ThoughtField from '../components/ThoughtField.astro';
 
 const runs = [
   {
@@ -32,16 +33,20 @@ const runs = [
   <section class="mx-auto flex max-w-6xl flex-col gap-12 px-4 pt-10 pb-16 md:pt-16">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,2.2fr)_minmax(260px,0.8fr)]">
       <div class="space-y-8">
-        <header class="mb-6 space-y-4">
-          <p class="font-mono text-xs uppercase tracking-[0.25em] text-text-muted/70">
-            Mind stream
-          </p>
-          <h1 class="text-3xl md:text-4xl font-medium text-text-main leading-tight">
-            A warm, drifting space<br />for unfinished thoughts.
-          </h1>
-          <p class="max-w-xl text-base md:text-lg text-text-muted leading-relaxed">
-            Not a tool. Not a product. Echolia is a quiet mind-room where thoughts arrive softly, drift in warm darkness, and echo back when they're ready.
-          </p>
+        <header class="mb-6 space-y-6">
+          <ThoughtField />
+
+          <div class="space-y-4">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-text-muted/70 text-center md:text-left">
+              Mind stream
+            </p>
+            <h1 class="text-3xl md:text-4xl font-medium text-text-main leading-tight text-center md:text-left">
+              A warm, drifting space<br />for unfinished thoughts.
+            </h1>
+            <p class="max-w-xl text-base md:text-lg text-text-muted leading-relaxed text-center md:text-left mx-auto md:mx-0">
+              Not a tool. Not a product. Echolia is a quiet mind-room where thoughts arrive softly, drift in warm darkness, and echo back when they're ready.
+            </p>
+          </div>
         </header>
 
         <div class="flex flex-col gap-4 md:gap-5">
