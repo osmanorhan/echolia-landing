@@ -1,21 +1,26 @@
 ---
-// ASCIIMindSpace - Immersive ASCII art terminal with intelligent phrase-forming particles
+// Tumbolia - Where dormant thoughts wait in cellular suspension
+// Inspired by GEB: "the land of dead hiccups and extinguished light bulbs"
 ---
 
-<div class="ascii-mindspace">
-  <canvas id="ascii-canvas"></canvas>
-  <div class="mindspace-overlay">
+<div class="tumbolia-space">
+  <canvas id="tumbolia-canvas"></canvas>
+  <div class="tumbolia-overlay">
     <div class="terminal-header">
-      <span class="terminal-prompt">echolia@mindroom:~$</span>
+      <span class="terminal-prompt">tumbolia@void:~$</span>
       <span class="cursor-blink">_</span>
     </div>
-    <div class="typing-text"></div>
+    <div class="depth-indicator">
+      <span class="depth-label">depth:</span>
+      <span class="depth-value" id="depth-value">∞</span>
+    </div>
   </div>
 </div>
 
 <script>
-  const canvas = document.getElementById('ascii-canvas') as HTMLCanvasElement;
+  const canvas = document.getElementById('tumbolia-canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!;
+  const depthValue = document.getElementById('depth-value') as HTMLElement;
 
   let width = window.innerWidth;
   let height = Math.min(700, window.innerHeight * 0.85);
@@ -23,320 +28,303 @@
   canvas.width = width;
   canvas.height = height;
 
-  // Refined character sets
-  const bgChars = '·∘○◦~';
-  const accentChars = '※⊹⋆✧✦★☆';
-  const structureChars = '▪▫□■◇◆△▲▽▼';
-  const fontSize = 14;
-  const columns = Math.floor(width / fontSize);
-
-  // Matrix rain drops with varied speeds
-  const drops: Array<{y: number, speed: number, char: string, color: string}> = [];
-  for (let i = 0; i < columns; i++) {
-    drops[i] = {
-      y: Math.random() * -100,
-      speed: 0.3 + Math.random() * 0.4,
-      char: bgChars[Math.floor(Math.random() * bgChars.length)],
-      color: Math.random() > 0.5 ? '#FF3E8E' : '#4CD7D0'
-    };
-  }
-
-  // Poetic phrases that will form in particles
-  const phrases = [
-    'thoughts drift',
-    'echoes return',
-    'the loop remembers',
-    'between moments',
-    'what drifts, returns',
-    'minds drift like signals',
-    'the stream remembers',
-    'silence has structure',
-    'a quiet recursion',
+  // Dormant thoughts that occasionally flicker to life
+  const dormantThoughts = [
+    'waiting',
+    'suspended',
+    'hiccup',
+    'echo',
+    'loop',
+    'forgotten',
+    'returning',
+    'between',
+    'dormant',
+    'liminal',
   ];
 
-  // Phrase particles that form and dissolve
-  let phraseParticles: Array<{
-    phrase: string;
+  // Cellular grid
+  const cellSize = 40;
+  const cols = Math.ceil(width / cellSize);
+  const rows = Math.ceil(height / cellSize);
+
+  interface Cell {
     x: number;
     y: number;
-    alpha: number;
-    stage: 'forming' | 'stable' | 'dissolving';
-    chars: Array<{char: string, dx: number, dy: number, alpha: number}>;
-    lifetime: number;
-  }> = [];
+    state: 'dormant' | 'awakening' | 'alive' | 'fading';
+    energy: number;
+    thought: string | null;
+    depth: number;
+    pulsePhase: number;
+    connections: Array<{x: number, y: number}>;
+  }
 
-  // Spawn phrase formation
-  function spawnPhrase() {
-    if (Math.random() < 0.008 && phraseParticles.length < 3) {
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-      const x = width * 0.15 + Math.random() * width * 0.7;
-      const y = height * 0.2 + Math.random() * height * 0.6;
+  let cells: Cell[][] = [];
+  let time = 0;
+  let zoomPhase = 0;
+  let recursionDepth = 0;
 
-      phraseParticles.push({
-        phrase,
-        x,
-        y,
-        alpha: 0,
-        stage: 'forming',
-        chars: phrase.split('').map((char, i) => ({
-          char,
-          dx: (Math.random() - 0.5) * 100,
-          dy: (Math.random() - 0.5) * 100,
-          alpha: 0
-        })),
-        lifetime: 0
-      });
+  // Initialize cellular grid
+  function initCells() {
+    cells = [];
+    for (let y = 0; y < rows; y++) {
+      cells[y] = [];
+      for (let x = 0; x < cols; x++) {
+        cells[y][x] = {
+          x,
+          y,
+          state: 'dormant',
+          energy: Math.random() * 0.3,
+          thought: Math.random() < 0.05 ? dormantThoughts[Math.floor(Math.random() * dormantThoughts.length)] : null,
+          depth: 0,
+          pulsePhase: Math.random() * Math.PI * 2,
+          connections: []
+        };
+      }
     }
   }
 
-  // Recursive loop symbol (Klein bottle inspired)
-  let loopRotation = 0;
-  const loopSymbol = [
-    '  ╭──╮  ',
-    '  │  ╰─╮',
-    '╭─╯    │',
-    '│   ╭──╯',
-    '╰───╯   ',
-  ];
+  initCells();
 
-  function drawRecursiveLoop() {
-    loopRotation += 0.003;
-    const centerX = width / 2;
-    const centerY = height / 2;
+  // Occasionally awaken a cell
+  function awakenRandomCell() {
+    if (Math.random() < 0.008) {
+      const x = Math.floor(Math.random() * cols);
+      const y = Math.floor(Math.random() * rows);
+      if (cells[y] && cells[y][x] && cells[y][x].state === 'dormant') {
+        cells[y][x].state = 'awakening';
+        cells[y][x].energy = 0;
+      }
+    }
+  }
+
+  // Update cell states (like Conway's Game of Life, but slower, more organic)
+  function updateCells() {
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const cell = cells[y][x];
+
+        // Update based on state
+        if (cell.state === 'awakening') {
+          cell.energy += 0.02;
+          if (cell.energy >= 1) {
+            cell.state = 'alive';
+            // Create connections to nearby cells
+            const neighbors = getNeighbors(x, y);
+            cell.connections = neighbors.slice(0, 2).map(n => ({x: n.x, y: n.y}));
+          }
+        } else if (cell.state === 'alive') {
+          cell.energy = Math.min(1, cell.energy + 0.005);
+          cell.pulsePhase += 0.02;
+
+          // Occasionally fade
+          if (Math.random() < 0.001) {
+            cell.state = 'fading';
+          }
+        } else if (cell.state === 'fading') {
+          cell.energy -= 0.015;
+          if (cell.energy <= 0) {
+            cell.state = 'dormant';
+            cell.energy = Math.random() * 0.3;
+            cell.connections = [];
+          }
+        } else if (cell.state === 'dormant') {
+          // Dormant cells slowly pulse
+          cell.pulsePhase += 0.005;
+          cell.energy = 0.1 + Math.sin(cell.pulsePhase) * 0.05;
+        }
+      }
+    }
+  }
+
+  function getNeighbors(x: number, y: number) {
+    const neighbors = [];
+    for (let dy = -1; dy <= 1; dy++) {
+      for (let dx = -1; dx <= 1; dx++) {
+        if (dx === 0 && dy === 0) continue;
+        const nx = x + dx;
+        const ny = y + dy;
+        if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
+          neighbors.push({x: nx, y: ny});
+        }
+      }
+    }
+    return neighbors;
+  }
+
+  // Draw cell as a universe or as a cell (recursive visualization)
+  function drawCell(cell: Cell, scale: number = 1) {
+    const centerX = cell.x * cellSize + cellSize / 2;
+    const centerY = cell.y * cellSize + cellSize / 2;
 
     ctx.save();
     ctx.translate(centerX, centerY);
 
-    // Pulsing multi-layer glow
-    const pulseSize = Math.sin(Date.now() * 0.0008) * 15 + 50;
-    const pulseIntensity = Math.sin(Date.now() * 0.001) * 0.15 + 0.2;
+    // Apply zoom/recursion effect
+    const zoomScale = 1 + Math.sin(zoomPhase + cell.x * 0.1 + cell.y * 0.1) * 0.05;
+    ctx.scale(zoomScale, zoomScale);
 
-    // Outer glow (cyan)
-    const gradient1 = ctx.createRadialGradient(0, 0, 0, 0, 0, pulseSize * 1.5);
-    gradient1.addColorStop(0, `rgba(76, 215, 208, ${pulseIntensity * 0.3})`);
-    gradient1.addColorStop(0.5, `rgba(181, 101, 216, ${pulseIntensity * 0.15})`);
-    gradient1.addColorStop(1, 'rgba(255, 62, 142, 0)');
-    ctx.fillStyle = gradient1;
-    ctx.fillRect(-pulseSize * 1.5, -pulseSize * 1.5, pulseSize * 3, pulseSize * 3);
+    // Color based on state
+    let color, alpha;
+    if (cell.state === 'dormant') {
+      color = '#4CD7D0';
+      alpha = cell.energy * 0.15;
+    } else if (cell.state === 'awakening') {
+      color = '#B565D8';
+      alpha = cell.energy * 0.4;
+    } else if (cell.state === 'alive') {
+      const pulse = Math.sin(cell.pulsePhase) * 0.2 + 0.8;
+      color = '#FF3E8E';
+      alpha = cell.energy * pulse * 0.6;
+    } else {
+      color = '#F28AAE';
+      alpha = cell.energy * 0.3;
+    }
 
-    // Inner glow (pink)
-    const gradient2 = ctx.createRadialGradient(0, 0, 0, 0, 0, pulseSize);
-    gradient2.addColorStop(0, `rgba(255, 62, 142, ${pulseIntensity})`);
-    gradient2.addColorStop(1, 'rgba(255, 62, 142, 0)');
-    ctx.fillStyle = gradient2;
-    ctx.fillRect(-pulseSize, -pulseSize, pulseSize * 2, pulseSize * 2);
+    // Draw cell membrane (hexagonal for organic feel)
+    const radius = cellSize * 0.35;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = (i / 6) * Math.PI * 2;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
 
-    // Draw rotating loop symbol
-    ctx.rotate(Math.sin(loopRotation) * 0.1);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = alpha;
+    ctx.stroke();
 
-    ctx.font = `${fontSize * 1.2}px "IBM Plex Mono", monospace`;
-    const lineHeight = fontSize * 1.4;
+    // Draw inner glow for alive cells
+    if (cell.state === 'alive' || cell.state === 'awakening') {
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+      gradient.addColorStop(0, color);
+      gradient.addColorStop(1, 'transparent');
+      ctx.fillStyle = gradient;
+      ctx.globalAlpha = alpha * 0.3;
+      ctx.fill();
+    }
 
-    loopSymbol.forEach((line, i) => {
-      const y = (i - loopSymbol.length / 2) * lineHeight;
-      const hue = (i / loopSymbol.length + loopRotation * 0.5) % 1;
-      const color = hue < 0.5 ? '#FF3E8E' : '#4CD7D0';
-
+    // Draw thought if present
+    if (cell.thought && (cell.state === 'alive' || cell.state === 'awakening')) {
+      ctx.font = `${cellSize * 0.2}px "IBM Plex Mono", monospace`;
       ctx.fillStyle = color;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 25;
-      ctx.globalAlpha = 0.7 + Math.sin(loopRotation * 2 + i) * 0.3;
-      ctx.fillText(line, -line.length * fontSize * 0.6 / 2, y);
-    });
+      ctx.globalAlpha = alpha * 0.8;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(cell.thought, 0, 0);
+    }
 
-    ctx.globalAlpha = 1;
+    // Draw nucleus (smaller circle suggesting recursion)
+    if (cell.state !== 'dormant') {
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.3, 0, Math.PI * 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = alpha * 0.5;
+      ctx.stroke();
+    }
+
     ctx.restore();
   }
 
-  // Floating accent particles (stars, symbols)
-  let accentParticles: Array<{
-    char: string;
-    x: number;
-    y: number;
-    vy: number;
-    vx: number;
-    alpha: number;
-    color: string;
-    size: number;
-  }> = [];
+  // Draw connections between cells
+  function drawConnections() {
+    ctx.globalAlpha = 0.15;
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const cell = cells[y][x];
+        if (cell.state === 'alive' && cell.connections.length > 0) {
+          const fromX = cell.x * cellSize + cellSize / 2;
+          const fromY = cell.y * cellSize + cellSize / 2;
 
-  function spawnAccentParticle() {
-    if (Math.random() < 0.03 && accentParticles.length < 25) {
-      const colors = ['#FF3E8E', '#4CD7D0', '#B565D8', '#F28AAE'];
-      accentParticles.push({
-        char: accentChars[Math.floor(Math.random() * accentChars.length)],
-        x: Math.random() * width,
-        y: height + 20,
-        vy: -0.5 - Math.random() * 1.5,
-        vx: (Math.random() - 0.5) * 0.5,
-        alpha: 0,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        size: fontSize * (0.8 + Math.random() * 0.6)
-      });
+          cell.connections.forEach(conn => {
+            const toX = conn.x * cellSize + cellSize / 2;
+            const toY = conn.y * cellSize + cellSize / 2;
+
+            ctx.beginPath();
+            ctx.moveTo(fromX, fromY);
+            ctx.lineTo(toX, toY);
+            ctx.strokeStyle = '#FF3E8E';
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          });
+        }
+      }
     }
+    ctx.globalAlpha = 1;
+  }
+
+  // Recursive zoom effect - suggesting infinite depth
+  function drawRecursiveHint() {
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    // Draw expanding/contracting circles suggesting recursion
+    for (let i = 0; i < 3; i++) {
+      const phase = zoomPhase + i * (Math.PI * 2 / 3);
+      const radius = 80 + Math.sin(phase) * 30 + i * 40;
+      const alpha = (Math.sin(phase) * 0.5 + 0.5) * 0.1;
+
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = i % 2 === 0 ? '#4CD7D0' : '#FF3E8E';
+      ctx.lineWidth = 1;
+      ctx.globalAlpha = alpha;
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Update depth display
+  function updateDepth() {
+    const depths = ['∞', '⊕', '⊗', '⊙', '◉', '○'];
+    const index = Math.floor((time / 200) % depths.length);
+    depthValue.textContent = depths[index];
   }
 
   function draw() {
-    // Deep fade for trails
-    ctx.fillStyle = 'rgba(10, 6, 8, 0.1)';
+    time++;
+    zoomPhase += 0.003;
+
+    // Subtle gradient background
+    const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, height/2);
+    gradient.addColorStop(0, '#0A0608');
+    gradient.addColorStop(0.5, '#110A0D');
+    gradient.addColorStop(1, '#0A0608');
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
 
-    // Matrix rain (background layer)
-    ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
+    // Update and awaken cells
+    if (time % 2 === 0) {
+      updateCells();
+      awakenRandomCell();
+    }
 
-    for (let i = 0; i < drops.length; i++) {
-      const drop = drops[i];
-      const x = i * fontSize;
-      const y = drop.y * fontSize;
+    // Draw recursive hint circles
+    drawRecursiveHint();
 
-      const alpha = Math.random() * 0.3 + 0.2;
-      ctx.fillStyle = drop.color;
-      ctx.shadowColor = drop.color;
-      ctx.shadowBlur = 6;
-      ctx.globalAlpha = alpha;
-      ctx.fillText(drop.char, x, y);
-      ctx.globalAlpha = 1;
+    // Draw connections first (background layer)
+    drawConnections();
 
-      drop.y += drop.speed;
-
-      if (y > height && Math.random() > 0.975) {
-        drop.y = 0;
-        drop.char = bgChars[Math.floor(Math.random() * bgChars.length)];
-        drop.color = Math.random() > 0.5 ? '#FF3E8E' : '#4CD7D0';
+    // Draw all cells
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        drawCell(cells[y][x]);
       }
     }
 
-    // Accent particles (mid layer)
-    accentParticles = accentParticles.filter(p => {
-      p.y += p.vy;
-      p.x += p.vx + Math.sin(p.y * 0.01) * 0.3;
-
-      if (p.y > height * 0.8) {
-        p.alpha = Math.min(1, p.alpha + 0.02);
-      } else if (p.y < height * 0.2) {
-        p.alpha = Math.max(0, p.alpha - 0.02);
-      }
-
-      if (p.alpha <= 0 || p.y < -20) return false;
-
-      ctx.font = `${p.size}px "IBM Plex Mono", monospace`;
-      ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 12;
-      ctx.globalAlpha = p.alpha * 0.6;
-      ctx.fillText(p.char, p.x, p.y);
-      ctx.globalAlpha = 1;
-
-      return true;
-    });
-    spawnAccentParticle();
-
-    // Central recursive loop
-    drawRecursiveLoop();
-
-    // Phrase particles (foreground layer)
-    phraseParticles = phraseParticles.filter(p => {
-      p.lifetime++;
-
-      // Forming stage: chars move from random positions to form word
-      if (p.stage === 'forming') {
-        p.chars.forEach((c, i) => {
-          c.dx *= 0.92;
-          c.dy *= 0.92;
-          c.alpha = Math.min(1, c.alpha + 0.03);
-        });
-
-        if (p.lifetime > 60) {
-          p.stage = 'stable';
-          p.lifetime = 0;
-        }
-      }
-
-      // Stable stage: word stays visible
-      else if (p.stage === 'stable') {
-        p.alpha = Math.min(1, p.alpha + 0.02);
-
-        if (p.lifetime > 180) {
-          p.stage = 'dissolving';
-          p.lifetime = 0;
-        }
-      }
-
-      // Dissolving stage: chars drift apart
-      else if (p.stage === 'dissolving') {
-        p.chars.forEach(c => {
-          c.dx += (Math.random() - 0.5) * 0.5;
-          c.dy += (Math.random() - 0.5) * 0.5;
-          c.alpha = Math.max(0, c.alpha - 0.015);
-        });
-
-        if (p.lifetime > 80) return false;
-      }
-
-      // Draw phrase
-      ctx.font = `${fontSize * 1.3}px "IBM Plex Mono", monospace`;
-      ctx.shadowBlur = 15;
-
-      p.chars.forEach((c, i) => {
-        const charX = p.x + i * fontSize * 0.7 + c.dx;
-        const charY = p.y + c.dy;
-        const hue = (i / p.chars.length) > 0.5 ? '#FF3E8E' : '#4CD7D0';
-
-        ctx.fillStyle = hue;
-        ctx.shadowColor = hue;
-        ctx.globalAlpha = c.alpha * 0.8;
-        ctx.fillText(c.char, charX, charY);
-      });
-
-      ctx.globalAlpha = 1;
-      return true;
-    });
-    spawnPhrase();
+    // Update depth indicator
+    if (time % 20 === 0) {
+      updateDepth();
+    }
 
     requestAnimationFrame(draw);
   }
 
   draw();
-
-  // Typing text effect
-  const typingElement = document.querySelector('.typing-text') as HTMLElement;
-  const messages = [
-    'a loop that forgot itself, but kept humming...',
-    'where thoughts go when they fall between moments',
-    'the stream remembers',
-    'silence has structure',
-  ];
-
-  let messageIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typingSpeed = 80;
-
-  function typeEffect() {
-    const currentMessage = messages[messageIndex];
-
-    if (!isDeleting) {
-      typingElement.textContent = currentMessage.substring(0, charIndex);
-      charIndex++;
-
-      if (charIndex > currentMessage.length) {
-        setTimeout(() => { isDeleting = true; }, 2500);
-      }
-    } else {
-      typingElement.textContent = currentMessage.substring(0, charIndex);
-      charIndex--;
-
-      if (charIndex === 0) {
-        isDeleting = false;
-        messageIndex = (messageIndex + 1) % messages.length;
-      }
-    }
-
-    const speed = isDeleting ? 40 : typingSpeed;
-    setTimeout(typeEffect, speed);
-  }
-
-  setTimeout(typeEffect, 1500);
 
   // Handle resize
   window.addEventListener('resize', () => {
@@ -344,28 +332,28 @@
     height = Math.min(700, window.innerHeight * 0.85);
     canvas.width = width;
     canvas.height = height;
+    initCells();
   });
 </script>
 
 <style>
-  .ascii-mindspace {
+  .tumbolia-space {
     position: relative;
     width: 100%;
     height: 700px;
     max-height: 85vh;
-    background: linear-gradient(180deg, #0A0608 0%, #110A0D 50%, #0A0608 100%);
+    background: #0A0608;
     overflow: hidden;
     margin-bottom: 3rem;
   }
 
-  #ascii-canvas {
+  #tumbolia-canvas {
     display: block;
     width: 100%;
     height: 100%;
-    image-rendering: pixelated;
   }
 
-  .mindspace-overlay {
+  .tumbolia-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -382,34 +370,42 @@
     font-family: var(--font-mono);
     font-size: 0.875rem;
     color: #4CD7D0;
-    text-shadow: 0 0 10px #4CD7D0, 0 0 20px rgba(76, 215, 208, 0.5);
+    text-shadow: 0 0 10px rgba(76, 215, 208, 0.4);
     display: flex;
     gap: 0.5rem;
     align-items: center;
   }
 
   .terminal-prompt {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   .cursor-blink {
-    animation: blink 1s steps(2, start) infinite;
-    color: #FF3E8E;
+    animation: blink 1.5s steps(2, start) infinite;
+    color: #B565D8;
   }
 
-  .typing-text {
+  .depth-indicator {
     position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 2rem;
+    right: 2rem;
     font-family: var(--font-mono);
-    font-size: 1rem;
-    color: #F28AAE;
-    text-shadow: 0 0 15px rgba(242, 138, 174, 0.6);
-    white-space: nowrap;
-    min-height: 1.5rem;
-    text-align: center;
-    max-width: 90%;
+    font-size: 0.875rem;
+    color: #FF3E8E;
+    text-shadow: 0 0 10px rgba(255, 62, 142, 0.4);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .depth-label {
+    opacity: 0.6;
+    font-size: 0.75rem;
+  }
+
+  .depth-value {
+    font-size: 1.25rem;
+    opacity: 0.9;
   }
 
   @keyframes blink {
@@ -418,8 +414,26 @@
     }
   }
 
-  /* Enhanced scanline effect */
-  .ascii-mindspace::before {
+  /* Subtle vignette */
+  .tumbolia-space::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(10, 6, 8, 0.3) 70%,
+      rgba(10, 6, 8, 0.6) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Very subtle scanlines */
+  .tumbolia-space::after {
     content: '';
     position: absolute;
     top: 0;
@@ -428,44 +442,18 @@
     bottom: 0;
     background: repeating-linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.15),
-      rgba(0, 0, 0, 0.15) 1px,
-      transparent 1px,
-      transparent 2px
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
     );
     pointer-events: none;
     z-index: 5;
-    opacity: 0.25;
-    animation: scanline 8s linear infinite;
-  }
-
-  @keyframes scanline {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(10px);
-    }
-  }
-
-  /* Multi-layer CRT glow */
-  .ascii-mindspace::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(ellipse at 30% 40%, rgba(255, 62, 142, 0.06), transparent 50%),
-      radial-gradient(ellipse at 70% 60%, rgba(76, 215, 208, 0.04), transparent 50%),
-      radial-gradient(ellipse at center, rgba(181, 101, 216, 0.03), transparent 70%);
-    pointer-events: none;
-    z-index: 5;
+    opacity: 0.5;
   }
 
   @media (max-width: 768px) {
-    .ascii-mindspace {
+    .tumbolia-space {
       height: 500px;
     }
 
@@ -475,9 +463,10 @@
       left: 1rem;
     }
 
-    .typing-text {
-      font-size: 0.875rem;
-      bottom: 2rem;
+    .depth-indicator {
+      font-size: 0.75rem;
+      bottom: 1rem;
+      right: 1rem;
     }
   }
 
@@ -485,10 +474,6 @@
     .cursor-blink {
       animation: none;
       opacity: 1;
-    }
-
-    .ascii-mindspace::before {
-      animation: none;
     }
   }
 </style>
