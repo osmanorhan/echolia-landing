@@ -15,6 +15,9 @@ module.exports = {
         'accent-echo': 'var(--accent-echo)',
         'accent-warm': 'var(--accent-warm)',
         'accent-cyan': 'var(--accent-cyan)',
+        'accent-pink': 'var(--accent-pink)',
+        'accent-rose': 'var(--accent-rose)',
+        'accent-red': 'var(--accent-red)',
         'tag-bg': 'var(--tag-bg)',
         'tag-text': 'var(--tag-text)',
         'tag-border': 'var(--tag-border)',
@@ -22,8 +25,8 @@ module.exports = {
         'tag-text-active': 'var(--tag-text-active)'
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        mono: ['SF Mono', 'ui-monospace', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'monospace']
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro', 'Roboto', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'SF Mono', 'JetBrains Mono', 'ui-monospace', 'monospace']
       },
       boxShadow: {
         'thought': '0 2px 12px rgba(0,0,0,0.25)'
@@ -33,8 +36,8 @@ module.exports = {
       },
       keyframes: {
         echoPulse: {
-          '0%': { boxShadow: '0 0 0 rgba(111,168,255,0)' },
-          '100%': { boxShadow: '0 0 22px rgba(111,168,255,0.35)' }
+          '0%': { boxShadow: '0 0 0 rgba(255,62,142,0)' },
+          '100%': { boxShadow: '0 0 22px rgba(255,62,142,0.45)' }
         }
       },
       animation: {

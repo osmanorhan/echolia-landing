@@ -1,0 +1,173 @@
+---
+import Base from '@layouts/Base.astro';
+
+const releases = [
+  {
+    version: '0.1.0',
+    date: '2025-01-15',
+    tag: 'Beta',
+    changes: [
+      {
+        type: 'New',
+        items: [
+          'Initial beta release',
+          'Tumbolia cellular automata visualization',
+          'Quick capture with global hotkey (Cmd+Shift+E)',
+          'Stream view for browsing thoughts',
+          'Full-text search with tag filtering',
+          'Local-first storage — all data stays on your device',
+          'Dark warm-pink aesthetic with film grain overlay',
+          'Cross-platform support (Windows, macOS, Linux)',
+          'Mobile apps for iOS and Android'
+        ]
+      },
+      {
+        type: 'Features',
+        items: [
+          'Keyboard shortcuts for navigation',
+          'Tag-based organization',
+          'Echo system for revisiting thoughts',
+          'Export to JSON, Markdown, and plain text',
+          'Auto-backup system',
+          'Customizable appearance settings'
+        ]
+      }
+    ]
+  }
+];
+---
+
+<Base
+  title="Changelog — Echolia"
+  description="Release history and updates for Echolia"
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 md:py-16">
+    <!-- Header -->
+    <header class="mb-12 space-y-4">
+      <div class="flex items-center gap-3">
+        <svg class="w-6 h-6 text-accent-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <h1 class="text-3xl md:text-4xl font-semibold text-text-main">
+          Changelog
+        </h1>
+      </div>
+      <p class="text-base md:text-lg text-text-muted leading-relaxed">
+        A record of all changes, additions, and improvements to Echolia.
+      </p>
+    </header>
+
+    <!-- Releases -->
+    <div class="space-y-12">
+      {releases.map((release) => (
+        <article class="relative">
+          <!-- Version Header -->
+          <div class="sticky top-20 z-10 bg-bg-deep/95 backdrop-blur-sm pb-4 mb-6 border-b border-white/5">
+            <div class="flex items-center justify-between gap-4 flex-wrap">
+              <div class="flex items-center gap-3">
+                <h2 class="text-2xl font-semibold text-text-main font-mono">
+                  v{release.version}
+                </h2>
+                {release.tag && (
+                  <span class="px-2 py-0.5 rounded bg-accent-pink/10 border border-accent-pink/20 text-xs font-mono text-accent-pink uppercase tracking-wider">
+                    {release.tag}
+                  </span>
+                )}
+              </div>
+              <time datetime={release.date} class="text-sm font-mono text-text-muted/80">
+                {new Date(release.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+            </div>
+          </div>
+
+          <!-- Changes -->
+          <div class="space-y-8">
+            {release.changes.map((section) => (
+              <div class="space-y-3">
+                <h3 class="text-sm font-mono uppercase tracking-wider text-accent-pink/70 flex items-center gap-2">
+                  {section.type === 'New' && (
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                  )}
+                  {section.type === 'Features' && (
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  )}
+                  {section.type === 'Improvements' && (
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  )}
+                  {section.type === 'Fixes' && (
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )}
+                  {section.type}
+                </h3>
+                <ul class="space-y-2">
+                  {section.items.map((item) => (
+                    <li class="flex gap-3 text-sm text-text-muted leading-relaxed">
+                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent-pink/40 mt-2"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Coming Up -->
+    <section class="mt-16 pt-12 border-t border-white/5">
+      <h2 class="text-xl font-semibold text-text-main mb-6 flex items-center gap-2">
+        <svg class="w-5 h-5 text-accent-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+        Coming Soon
+      </h2>
+      <div class="thought-card bg-bg-surface/30 space-y-4">
+        <div class="space-y-3">
+          <h3 class="text-sm font-medium text-text-main">v0.2.0 — Sync & Collaboration</h3>
+          <ul class="space-y-2">
+            <li class="flex gap-3 text-sm text-text-muted leading-relaxed">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent-cyan/40 mt-2"></span>
+              <span>End-to-end encrypted sync across all devices</span>
+            </li>
+            <li class="flex gap-3 text-sm text-text-muted leading-relaxed">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent-cyan/40 mt-2"></span>
+              <span>Real-time conflict resolution</span>
+            </li>
+            <li class="flex gap-3 text-sm text-text-muted leading-relaxed">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent-cyan/40 mt-2"></span>
+              <span>Improved mobile interface</span>
+            </li>
+            <li class="flex gap-3 text-sm text-text-muted leading-relaxed">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-accent-cyan/40 mt-2"></span>
+              <span>Advanced search filters and saved searches</span>
+            </li>
+          </ul>
+        </div>
+        <p class="text-xs text-text-muted/70">
+          Expected Q2 2025. Follow progress on <a href="https://twitter.com/echolia_app" class="text-accent-pink hover:text-accent-cyan transition-colors">Twitter</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <div class="mt-12 thought-card bg-bg-surface/50 text-center space-y-3">
+      <h3 class="text-base font-medium text-text-main">Have feedback or feature requests?</h3>
+      <p class="text-sm text-text-muted">
+        We'd love to hear from you. <a href="https://twitter.com/echolia_app" class="text-accent-pink hover:text-accent-cyan transition-colors">Tweet at us</a> or <a href="mailto:feedback@echolia.app" class="text-accent-pink hover:text-accent-cyan transition-colors">send us an email</a>.
+      </p>
+    </div>
+  </div>
+</Base>

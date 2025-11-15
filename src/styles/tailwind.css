@@ -14,35 +14,62 @@
   }
 
   ::selection {
-    background: rgba(111, 168, 255, 0.25);
+    background: rgba(255, 62, 142, 0.25);
   }
 }
 
 @layer components {
   .thought-card {
-    @apply bg-bg-surface rounded-thought border border-[var(--color-border-faint)] shadow-thought p-4 md:p-5 transition-transform transition-shadow duration-200 ease-out;
+    @apply bg-bg-surface border border-[var(--card-border)] p-4 md:p-5 transition-all duration-300 ease-out;
+    border-radius: var(--radius-card);
+    box-shadow: var(--glow-ambient);
   }
 
   .thought-card-hover {
-    @apply hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/40 hover:bg-bg-alt hover:bg-opacity-80;
+    @apply hover:-translate-y-1 hover:bg-bg-alt;
+  }
+
+  .thought-card-hover:hover {
+    border-color: rgba(255, 62, 142, 0.10);
+    box-shadow: var(--glow-ambient), 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 
   .tag-chip {
-    @apply inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium tracking-wide bg-tag-bg text-tag-text border border-tag-border;
+    @apply inline-flex items-center text-[11px] tracking-wide backdrop-blur-sm;
+    font-family: var(--font-mono);
+    padding: 4px 10px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    border-radius: var(--radius-tag);
+    margin-right: 8px;
+  }
+
+  .tag-chip:hover {
+    background: var(--tag-bg-active);
+    box-shadow: var(--glow-edge);
   }
 
   .tag-chip-active {
-    @apply bg-tag-bg-active text-tag-text-active border-tag-border;
+    background: var(--tag-bg-active);
   }
 
   .fab-ghost {
-    @apply inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-text-main text-opacity-90 backdrop-blur-md active:scale-[0.98] transition;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    @apply inline-flex items-center gap-2 text-sm backdrop-blur-md transition-all duration-200;
+    background: var(--fab-bg);
+    border: 1px solid var(--fab-border);
+    border-radius: var(--radius-button);
+    padding: 12px 20px;
+    color: var(--color-text-primary);
   }
 
   .fab-ghost:hover {
-    background-color: rgba(255, 255, 255, 0.07);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 62, 142, 0.25);
+    box-shadow: var(--glow-direct);
+  }
+
+  .fab-ghost:active {
+    transform: scale(0.96);
   }
 }

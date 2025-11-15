@@ -1,20 +1,73 @@
 :root {
-  --color-bg-deep: #070A0D;
-  --color-bg-surface: #0E1318;
-  --color-bg-alt: #121920;
-  --color-text-main: #E3E7EB;
-  --color-text-muted: #7F8891;
-  --color-border-faint: rgba(255, 255, 255, 0.05);
+  /* Base Colors (Warm Dark) */
+  --color-bg-0: #0A0608;      /* warm-black base */
+  --color-bg-1: #110A0D;      /* main surface */
+  --color-bg-2: #1A1116;      /* elevated surface */
+  --color-bg-3: #22171D;      /* hover/active */
 
-  --accent-echo: #6FA8FF;
-  --accent-warm: #FF8C42;
-  --accent-cyan: #4CD7D0;
+  /* Legacy aliases for gradual migration */
+  --color-bg-deep: var(--color-bg-0);
+  --color-bg-surface: var(--color-bg-1);
+  --color-bg-alt: var(--color-bg-2);
 
-  --tag-bg: rgba(255, 255, 255, 0.05);
-  --tag-text: #B1BAC4;
-  --tag-border: rgba(255, 255, 255, 0.08);
-  --tag-bg-active: rgba(111, 168, 255, 0.15);
-  --tag-text-active: #AECBFF;
+  /* Text Colors (Rose-White Palette) */
+  --color-text-primary: #F5E9EE;   /* warm rose-white */
+  --color-text-secondary: #C5A8B2; /* dusty pink */
+  --color-text-tertiary: #8B6E78;  /* rose-gray */
+
+  /* Legacy aliases */
+  --color-text-main: var(--color-text-primary);
+  --color-text-muted: var(--color-text-secondary);
+
+  /* Accent Colors (Pink-Rose Glow) */
+  --accent-pink: #FF3E8E;  /* signature glow */
+  --accent-rose: #F28AAE;  /* soft glow */
+  --accent-red: #FF2F5E;   /* intensity / alerts */
+  --accent-cyan: #4CD7D0;  /* cyan accent for contrast */
+  --accent-purple: #B565D8; /* purple for depth */
+
+  /* Legacy alias */
+  --accent-echo: var(--accent-pink);
+  --accent-warm: var(--accent-rose);
+
+  /* Surface & Border Tokens */
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --color-border-faint: var(--card-border);
+
+  /* Glow Tokens */
+  --glow-ambient: 0 0 22px rgba(255, 62, 142, 0.16);
+  --glow-direct: 0 0 10px rgba(255, 62, 142, 0.45);
+  --glow-edge: inset 0 0 6px rgba(255, 62, 142, 0.35);
+
+  /* Tag Colors */
+  --tag-bg: rgba(255, 62, 142, 0.12);
+  --tag-text: var(--color-text-primary);
+  --tag-border: rgba(255, 62, 142, 0.25);
+  --tag-bg-active: rgba(255, 62, 142, 0.18);
+  --tag-text-active: var(--color-text-primary);
+
+  /* FAB Tokens */
+  --fab-bg: rgba(255, 255, 255, 0.06);
+  --fab-border: rgba(255, 255, 255, 0.1);
+
+  /* Spacing Tokens */
+  --space-xxs: 4px;
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Border Radius */
+  --radius-card: 16px;
+  --radius-tag: 8px;
+  --radius-button: 14px;
+  --radius-input: 12px;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro', 'Roboto', sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', monospace;
 }
 
 body {
