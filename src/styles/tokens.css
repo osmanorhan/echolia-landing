@@ -23,11 +23,12 @@
   --accent-pink: #FF3E8E;  /* signature glow */
   --accent-rose: #F28AAE;  /* soft glow */
   --accent-red: #FF2F5E;   /* intensity / alerts */
+  --accent-cyan: #4CD7D0;  /* cyan accent for contrast */
+  --accent-purple: #B565D8; /* purple for depth */
 
   /* Legacy alias */
   --accent-echo: var(--accent-pink);
   --accent-warm: var(--accent-rose);
-  --accent-cyan: var(--accent-pink); /* redirect to pink */
 
   /* Surface & Border Tokens */
   --card-bg: rgba(255, 255, 255, 0.02);
