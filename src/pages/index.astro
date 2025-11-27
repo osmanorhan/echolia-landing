@@ -102,13 +102,13 @@ const runs = [
           <span class="glow-text-cyan">but kept humming anyway.</span>
         </p>
 
-        <p class="text-base md:text-lg text-text-muted/80 leading-relaxed max-w-xl mx-auto">
+        <p class="text-base md:text-lg text-text-muted opacity-80 leading-relaxed max-w-xl mx-auto">
           Where thoughts go when they fall between moments.
           <br />
           Some return. Some don't.
         </p>
 
-        <p class="font-mono text-sm text-text-muted/60 uppercase tracking-[0.3em]">
+        <p class="font-mono text-sm text-text-muted opacity-60 uppercase tracking-[0.3em]">
           Local-first · Private · On-device intelligence
         </p>
       </div>
@@ -136,7 +136,7 @@ const runs = [
   <section class="mx-auto max-w-5xl px-4 pb-16 md:pb-24">
     <div class="space-y-8">
         <header class="space-y-3">
-          <p class="font-mono text-xs uppercase tracking-[0.25em] text-text-muted/70 flex items-center gap-2">
+          <p class="font-mono text-xs uppercase tracking-[0.25em] text-text-muted opacity-70 flex items-center gap-2">
             <span class="inline-block w-2 h-2 rounded-full bg-accent-pink animate-pulse"></span>
             Live stream from the mind-room
           </p>
@@ -155,7 +155,7 @@ const runs = [
             >
               <div class="flex items-start justify-between gap-4">
                 <div class="space-y-2 flex-1">
-                  <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted/70">
+                  <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-text-muted opacity-70">
                     <span class="inline-flex h-1.5 w-1.5 rounded-full bg-accent-pink" />
                     <span>{run.kind}</span>
                   </div>
@@ -183,7 +183,7 @@ const runs = [
                   )}
                 </div>
                 <div class="flex flex-col items-end gap-2 text-right">
-                  <time datetime={run.date} class="font-mono text-[11px] text-text-muted/80">
+                  <time datetime={run.date} class="font-mono text-[11px] text-text-muted opacity-80">
                     {run.date}
                   </time>
                   <div class="flex flex-wrap justify-end gap-1">
@@ -201,7 +201,7 @@ const runs = [
 
       <!-- Aesthetic quote block -->
       <div class="quote-block max-w-2xl mx-auto mt-8">
-        <p class="font-mono text-sm text-text-muted/80 leading-relaxed italic">
+        <p class="font-mono text-sm text-text-muted opacity-80 leading-relaxed italic">
           "Silence has structure.<br />
           The mind remembers sideways.<br />
           Echoes aren't lost. Only delayed."
@@ -565,4 +565,3 @@ const runs = [
     }
   }
 </style>
-

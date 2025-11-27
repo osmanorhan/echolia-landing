@@ -1,129 +1,86 @@
 ---
 title: Quick Start
-description: Get started with Echolia in 5 minutes
+description: Install Echolia and capture your first thought in minutes
 section: Getting Started
 order: 2
 ---
 
-# Quick Start
+Start with one capture. This guide gets you from download to your first saved thought in under 5 minutes.
 
-Welcome to Echolia. This guide will help you capture your first thought in under 5 minutes.
+<div class="doc-callout">
+  <div class="doc-callout__label">What you need</div>
+  <p class="doc-callout__body">
+    No account or setup screens. Runs offline by default and keeps your data on-device. If the OS blocks the app, follow the security prompts or see Installation for fixes.
+  </p>
+</div>
 
-## First Launch
+<div class="doc-dialog">
+  <div class="doc-dialog__avatar">✶</div>
+  <div class="doc-dialog__content">
+    <p class="doc-dialog__label">Flow</p>
+    <p class="doc-dialog__text">
+      Download → Open → Capture → Revisit. Keep it light; fragments are enough to start the echoes.
+    </p>
+  </div>
+</div>
 
-When you first open Echolia, you'll see the **Tumbolia** — a warm, meditative space where dormant thoughts wait.
+## 1) Install and open Echolia
 
-The interface is intentionally minimal:
-- No accounts required
-- No configuration needed
-- Just you and your thoughts
+1. Download the installer from the pinned downloads on the homepage (Windows, macOS, Linux, or mobile).
+2. Install and open the app. If you see a security prompt, choose "Open anyway" (macOS: right-click Open; Windows: "More info" → "Run anyway").
+3. Keep Echolia running so Quick Capture stays available.
 
----
+<ul class="doc-checklist">
+  <li>App opens to the Stream without account creation</li>
+  <li>Quick Capture shortcut opens from the desktop</li>
+  <li>Any OS security prompts are cleared</li>
+</ul>
 
-## Capturing Your First Thought
+## 2) Capture your first thought
 
-### The Quick Capture
+1. Press `Cmd+Shift+E` (macOS) or `Ctrl+Shift+E` (Windows/Linux) to open Quick Capture.
+2. Type a fragment or question. Add lightweight tags inline, e.g. `thinking about mind-gardens #design #looping`.
+3. Press `Enter` to save. Your thought appears at the top of the Stream.
+4. Click the card to open it. Add an echo if you want to expand the idea.
 
-1. **Press** `Cmd+Shift+E` (macOS) or `Ctrl+Shift+E` (Windows/Linux)
-2. **Type** whatever comes to mind
-3. **Press** `Enter` to save
+<ul class="doc-checklist">
+  <li>Saved one thought with at least one tag</li>
+  <li>Reopened it and added a short echo</li>
+  <li>Confirmed it shows in the Stream list</li>
+</ul>
 
-That's it. Your thought is now in Tumbolia.
+## 3) Learn the views
 
-### Understanding the Interface
+**Stream** (default)  
+Vertical list of everything you've captured. Most recent at the top.
 
-Echolia has three main views:
+**Tumbolia**  
+A calmer, animated space for idle browsing. Use it when you want to drift and spot patterns.
 
-**Stream View** (default)
-- Vertical list of your thoughts
-- Most recent at top
-- Scroll to drift through older echoes
+**Search** (`Cmd/Ctrl + K`)  
+Type to find fragments, tags, or dates. Use filters to narrow by tag when the list grows.
 
-**Tumbolia View**
-- Cellular automata visualization
-- Thoughts become living cells
-- Meditative, generative
+Switch views with `Cmd/Ctrl + /` or via the view toggle in the header.
 
-**Search View** (`Cmd+K`)
-- Full-text search
-- Filter by tags
-- Find connections
+## 4) Keep the loop warm
 
----
+| Shortcut | Purpose |
+|----------|---------|
+| `Cmd/Ctrl + Shift + E` | Quick capture from anywhere |
+| `Cmd/Ctrl + N` | New thought in the main app |
+| `Cmd/Ctrl + K` | Search / command palette |
+| `Cmd/Ctrl + /` | Toggle Stream ↔ Tumbolia |
+| `Escape` | Close dialogs or return to Stream |
 
-## Core Concepts
+<div class="doc-callout">
+  <div class="doc-callout__label">Data stays local</div>
+  <p class="doc-callout__body">
+    Thoughts are stored on your device. See Troubleshooting → Data Issues for backup locations and export tips.
+  </p>
+</div>
 
-### Thoughts
+## Next steps
 
-A thought is any fragment you capture:
-- A fleeting idea
-- An unfinished sentence
-- A question that won't let go
-- A dream you half-remember
-
-Thoughts don't need to be complete. They're meant to be **in-process**.
-
-### Tags
-
-Tag thoughts to create loose connections:
-
-```
-thinking about klein bottles #topology #loops
-```
-
-Tags appear as `#topology` and `#loops`. Click any tag to see related thoughts.
-
-### Echoes
-
-When you revisit a thought and add to it, you create an **echo**:
-
-1. Click any thought to open it
-2. Add your new thinking
-3. The timestamp shows when the echo occurred
-
-Each thought becomes a thread of your evolving thinking.
-
----
-
-## Keyboard Shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `Cmd/Ctrl + Shift + E` | Quick capture |
-| `Cmd/Ctrl + K` | Search / Command palette |
-| `Cmd/Ctrl + N` | New thought |
-| `Cmd/Ctrl + /` | Toggle view mode |
-| `Escape` | Close / Go back |
-
----
-
-## Your First Week
-
-**Day 1-2:** Just capture
-Don't organize, don't categorize. Just dump thoughts.
-
-**Day 3-4:** Add a few tags
-Notice natural groupings. Add 1-2 tags per thought.
-
-**Day 5-7:** Revisit
-Use search (`Cmd+K`) to find old thoughts. Add echoes when something connects.
-
----
-
-## What Not to Do
-
-Echolia works best when you:
-- **Don't** try to organize everything
-- **Don't** write perfect sentences
-- **Don't** delete "bad" thoughts
-- **Don't** force connections
-
-Let the thoughts drift. The structure emerges over time.
-
----
-
-## Next Steps
-
-- [Best Practices](/docs/best-practices) - Develop your workflow
-- [Advanced Features](/docs/features) - Explore deeper capabilities
-- [Configuration](/docs/configuration) - Customize your experience
+- [Installation](/docs/installation) — Platform-specific install notes and permissions
+- [Best Practices](/docs/best-practices) — How to keep loops healthy
+- [Troubleshooting](/docs/troubleshooting) — Quick fixes if something blocks you

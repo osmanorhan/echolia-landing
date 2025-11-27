@@ -9,13 +9,20 @@ import Base from '@layouts/Base.astro';
   <div class="mx-auto max-w-3xl px-4 py-12 md:py-16">
     <!-- Header -->
     <header class="mb-12 space-y-6">
-      <h1 class="text-3xl md:text-4xl font-semibold text-text-main">
+      <h1 class="text-3xl md:text-4xl font-semibold text-text-main leading-tight">
         About Echolia
       </h1>
       <p class="text-lg md:text-xl text-text-muted leading-relaxed italic">
         A warm mind-room for unfinished thoughts. Where the half-formed ideas go when they fall between moments.
       </p>
     </header>
+
+    <div class="doc-callout">
+      <div class="doc-callout__label">Readability refresh</div>
+      <p class="doc-callout__body">
+        The About page now uses the same Space Grotesk stack, brighter ink, and tighter spacing from the docs overhaul so the story reads cleanly.
+      </p>
+    </div>
 
     <!-- Philosophy -->
     <article class="prose-echolia space-y-8">
@@ -195,11 +202,11 @@ import Base from '@layouts/Base.astro';
 <style>
   /* Prose styling for about page */
   .prose-echolia h2 {
-    @apply text-2xl font-semibold text-text-main mb-4 mt-12 pb-3 border-b border-white/5;
+    @apply text-2xl font-semibold text-text-main mb-4 mt-12 pb-3 border-b border-white/10;
   }
 
   .prose-echolia p {
-    @apply text-base text-text-muted leading-relaxed mb-4;
+    @apply text-base text-text-main leading-relaxed mb-4 opacity-90;
   }
 
   .prose-echolia ul {
@@ -207,28 +214,27 @@ import Base from '@layouts/Base.astro';
   }
 
   .prose-echolia li {
-    @apply text-base text-text-muted leading-relaxed flex gap-3;
+    @apply text-base text-text-main leading-relaxed flex gap-3 opacity-90;
   }
 
   .prose-echolia li::before {
     content: "→";
-    @apply text-accent-pink flex-shrink-0;
-    opacity: 0.6;
+    @apply text-accent-cyan flex-shrink-0;
+    opacity: 0.7;
   }
 
   .prose-echolia blockquote {
-    @apply border-l-2 pl-6 my-6 italic text-text-muted;
-    border-color: rgba(255, 62, 142, 0.4);
-    opacity: 0.9;
+    @apply border-l-2 pl-6 my-6 italic text-text-main bg-bg-surface/60 rounded-lg opacity-90;
+    border-color: rgba(125, 227, 218, 0.5);
   }
 
   .prose-echolia a {
-    @apply text-accent-pink hover:text-accent-cyan transition-colors underline;
-    text-decoration-color: rgba(255, 62, 142, 0.3);
+    @apply text-accent-cyan hover:text-accent-pink transition-colors underline decoration-1;
+    text-decoration-color: rgba(125, 227, 218, 0.4);
   }
 
   .prose-echolia a:hover {
-    text-decoration-color: rgba(76, 215, 208, 0.5);
+    text-decoration-color: rgba(255, 92, 157, 0.5);
   }
 
   .prose-echolia strong {
@@ -237,6 +243,5 @@ import Base from '@layouts/Base.astro';
 
   .prose-echolia em {
     @apply italic text-accent-pink;
-    opacity: 0.9;
   }
 </style>

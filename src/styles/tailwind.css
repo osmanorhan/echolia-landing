@@ -10,19 +10,23 @@
   }
 
   body {
-    @apply min-h-screen font-sans antialiased;
+    @apply min-h-screen font-sans antialiased text-[16px];
+    letter-spacing: -0.01em;
   }
 
   ::selection {
-    background: rgba(255, 62, 142, 0.25);
+    background: rgba(125, 227, 218, 0.22);
+    color: var(--color-bg-deep);
   }
 }
 
 @layer components {
   .thought-card {
-    @apply bg-bg-surface border border-[var(--card-border)] p-4 md:p-5 transition-all duration-300 ease-out;
+    @apply relative bg-bg-surface/80 border border-[var(--card-border)] p-4 md:p-5 transition-all duration-300 ease-out backdrop-blur;
     border-radius: var(--radius-card);
     box-shadow: var(--glow-ambient);
+    background-image: var(--panel-highlight);
+    overflow: hidden;
   }
 
   .thought-card-hover {
@@ -71,5 +75,85 @@
 
   .fab-ghost:active {
     transform: scale(0.96);
+  }
+
+  .doc-callout {
+    @apply my-8 p-5 md:p-6 rounded-2xl border text-text-main;
+    background: linear-gradient(135deg, rgba(125, 227, 218, 0.10), rgba(255, 92, 157, 0.08));
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .doc-callout[data-tone="warn"] {
+    background: linear-gradient(135deg, rgba(246, 193, 119, 0.14), rgba(255, 92, 157, 0.10));
+    border-color: rgba(246, 193, 119, 0.45);
+  }
+
+  .doc-callout__label {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.2em] text-text-main;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-bottom: 12px;
+  }
+
+  .doc-callout__body {
+    @apply text-text-main leading-relaxed;
+    font-family: var(--font-reading);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .doc-dialog {
+    @apply my-8 p-5 md:p-6 rounded-xl border border-white/15 bg-bg-alt/80 flex gap-4 items-start;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), var(--glow-ambient);
+  }
+
+  .doc-dialog__avatar {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-base font-mono text-text-main border border-white/20 bg-bg-surface;
+  }
+
+  .doc-dialog__content {
+    @apply space-y-2;
+    flex: 1;
+  }
+
+  .doc-dialog__label {
+    @apply uppercase text-[11px] font-mono tracking-[0.2em] text-text-muted;
+  }
+
+  .doc-dialog__text {
+    @apply text-text-main leading-relaxed;
+    font-family: var(--font-reading);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .doc-shoutout {
+    @apply my-8 p-5 md:p-6 rounded-2xl border text-text-main shadow-[0_10px_40px_rgba(0,0,0,0.35)];
+    background: linear-gradient(90deg, rgba(246, 193, 119, 0.12), var(--color-bg-surface), rgba(255, 92, 157, 0.12));
+    border-color: rgba(246, 193, 119, 0.35);
+    font-family: var(--font-reading);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .doc-shoutout strong {
+    @apply text-text-main font-semibold;
+  }
+
+  .doc-checklist {
+    @apply grid gap-3 my-8;
+  }
+
+  .doc-checklist li {
+    @apply flex gap-3 items-start rounded-xl border border-white/15 bg-bg-surface/80 px-4 py-3;
+    font-family: var(--font-reading);
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .doc-checklist li::before {
+    content: '✓';
+    @apply text-accent-sage font-mono text-base mt-0.5;
   }
 }

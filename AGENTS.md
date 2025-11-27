@@ -11,7 +11,7 @@ This file is for SWE agents working on the `echolia-landing` project.
 ## Tech Stack
 
 - **Framework:** Astro (static output, no SSR needed).
-- **Styling:** Tailwind CSS + custom tokens in plain CSS.
+- **Styling:** Tailwind CSS + Radix for components + custom tokens in plain CSS.
 - **Content:** Astro content collections + Markdown files for blog posts.
 - **JS Islands:** Only when necessary (e.g., for future Radix UI overlays); default to minimal/no client JS.
 

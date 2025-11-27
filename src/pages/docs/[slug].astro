@@ -19,6 +19,8 @@ const { Content } = await doc.render();
 <DocsLayout
   title={`${doc.data.title} — Echolia Docs`}
   description={doc.data.description}
+  pageTitle={doc.data.title}
+  subtitle={doc.data.description}
   currentSlug={doc.slug}
 >
   <Content />

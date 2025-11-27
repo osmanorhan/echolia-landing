@@ -5,9 +5,24 @@ section: Reference
 order: 50
 ---
 
-# Troubleshooting
-
 Common issues and their solutions. If you don't find your issue here, reach out on [Twitter](https://twitter.com/echolia_app) or [email us](mailto:support@echolia.app).
+
+<div class="doc-callout" data-tone="warn">
+  <div class="doc-callout__label">Contrast check</div>
+  <p class="doc-callout__body">
+    Error states and warnings now sit on amber + pink blends so they stand out from regular steps. Inline code is brighter and easier to scan.
+  </p>
+</div>
+
+<div class="doc-dialog">
+  <div class="doc-dialog__avatar">!</div>
+  <div class="doc-dialog__content">
+    <p class="doc-dialog__label">Before you debug</p>
+    <p class="doc-dialog__text">
+      Skim the checklists first. They bundle the fastest fixes without forcing you to read the whole page.
+    </p>
+  </div>
+</div>
 
 ---
 

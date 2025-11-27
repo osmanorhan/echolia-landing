@@ -26,7 +26,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -60,6 +60,8 @@ const ogImage = `${siteUrl}/og-image.png`;
   </head>
   <body class="relative bg-bg-deep text-text-main">
     <div class="noise-layer"></div>
+    <div class="grid-overlay"></div>
+    <div class="halo"></div>
     <div class="relative z-10 min-h-screen flex flex-col">
       <header class="sticky top-0 z-20 border-b border-white/5 bg-gradient-to-b from-[#110A0D]/95 to-[#0A0608]/98 backdrop-blur-xl">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
@@ -69,14 +71,14 @@ const ogImage = `${siteUrl}/og-image.png`;
             </div>
             <div class="flex flex-col">
               <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
-              <span class="text-sm text-text-main/90">a warm mind-room</span>
+              <span class="text-sm text-text-main opacity-90">a warm mind-room</span>
             </div>
           </div>
           <nav class="flex items-center gap-4 md:gap-5 text-xs md:text-sm">
-            <a href="/" class="text-text-muted hover:text-text-main/90 transition">Home</a>
-            <a href="/docs" class="text-text-muted hover:text-text-main/90 transition">Docs</a>
-            <a href="/blog" class="text-text-muted hover:text-text-main/90 transition">Blog</a>
-            <a href="/about" class="text-text-muted hover:text-text-main/90 transition hidden md:block">About</a>
+            <a href="/" class="text-text-muted hover:text-text-main transition">Home</a>
+            <a href="/docs" class="text-text-muted hover:text-text-main transition">Docs</a>
+            <a href="/blog" class="text-text-muted hover:text-text-main transition">Blog</a>
+            <a href="/about" class="text-text-muted hover:text-text-main transition hidden md:block">About</a>
             <a href="/download" class="fab-ghost hidden sm:inline-flex">
               <span>Download</span>
             </a>
@@ -100,14 +102,14 @@ const ogImage = `${siteUrl}/og-image.png`;
                 </div>
                 <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
               </div>
-              <p class="text-xs text-text-muted/70 leading-relaxed">
+              <p class="text-xs text-text-muted opacity-70 leading-relaxed">
                 A warm mind-room for unfinished thoughts
               </p>
             </div>
 
             <!-- Product -->
             <div class="space-y-3">
-              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted/60">Product</h3>
+              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">Product</h3>
               <ul class="space-y-2 text-xs">
                 <li><a href="/download" class="text-text-muted hover:text-accent-pink transition-colors">Download</a></li>
                 <li><a href="/docs" class="text-text-muted hover:text-accent-pink transition-colors">Documentation</a></li>
@@ -121,7 +123,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 
             <!-- Company -->
             <div class="space-y-3">
-              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted/60">Company</h3>
+              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">Company</h3>
               <ul class="space-y-2 text-xs">
                 <li><a href="/about" class="text-text-muted hover:text-accent-pink transition-colors">About</a></li>
                 <li><a href="/blog" class="text-text-muted hover:text-accent-pink transition-colors">Blog</a></li>
@@ -132,7 +134,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 
             <!-- Social -->
             <div class="space-y-3">
-              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted/60">Follow</h3>
+              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">Follow</h3>
               <ul class="space-y-2">
                 <li>
                   <a href="https://twitter.com/echolia_app" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
@@ -164,10 +166,10 @@ const ogImage = `${siteUrl}/og-image.png`;
 
           <!-- Bottom Bar -->
           <div class="pt-6 border-t border-white/5 flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-            <span class="text-xs font-mono text-text-muted/70">
+            <span class="text-xs font-mono text-text-muted opacity-70">
               © {new Date().getFullYear()} Echolia. A warm space where thoughts drift and echo.
             </span>
-            <div class="flex gap-4 text-xs font-mono text-text-muted/70">
+            <div class="flex gap-4 text-xs font-mono text-text-muted opacity-70">
               <a href="/privacy" class="hover:text-accent-pink transition-colors">Privacy</a>
               <a href="/terms" class="hover:text-accent-pink transition-colors">Terms</a>
             </div>
@@ -177,4 +179,3 @@ const ogImage = `${siteUrl}/og-image.png`;
     </div>
   </body>
 </html>
-

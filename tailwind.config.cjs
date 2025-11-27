@@ -1,3 +1,8 @@
+const withOpacityValue = (variable) => ({ opacityValue }) =>
+  opacityValue === undefined
+    ? `rgb(var(${variable}) / 1)`
+    : `rgb(var(${variable}) / ${opacityValue})`;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,17 +12,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'bg-deep': 'var(--color-bg-deep)',
-        'bg-surface': 'var(--color-bg-surface)',
-        'bg-alt': 'var(--color-bg-alt)',
-        'text-main': 'var(--color-text-main)',
-        'text-muted': 'var(--color-text-muted)',
-        'accent-echo': 'var(--accent-echo)',
-        'accent-warm': 'var(--accent-warm)',
-        'accent-cyan': 'var(--accent-cyan)',
-        'accent-pink': 'var(--accent-pink)',
-        'accent-rose': 'var(--accent-rose)',
-        'accent-red': 'var(--accent-red)',
+        'bg-deep': withOpacityValue('--color-bg-deep-rgb'),
+        'bg-surface': withOpacityValue('--color-bg-surface-rgb'),
+        'bg-alt': withOpacityValue('--color-bg-alt-rgb'),
+        'text-main': withOpacityValue('--color-text-main-rgb'),
+        'text-muted': withOpacityValue('--color-text-muted-rgb'),
+        'accent-echo': withOpacityValue('--accent-echo-rgb'),
+        'accent-warm': withOpacityValue('--accent-warm-rgb'),
+        'accent-cyan': withOpacityValue('--accent-cyan-rgb'),
+        'accent-pink': withOpacityValue('--accent-pink-rgb'),
+        'accent-rose': withOpacityValue('--accent-rose-rgb'),
+        'accent-purple': withOpacityValue('--accent-purple-rgb'),
+        'accent-amber': withOpacityValue('--accent-amber-rgb'),
+        'accent-sage': withOpacityValue('--accent-sage-rgb'),
+        'accent-red': withOpacityValue('--accent-red-rgb'),
         'tag-bg': 'var(--tag-bg)',
         'tag-text': 'var(--tag-text)',
         'tag-border': 'var(--tag-border)',
@@ -25,7 +33,7 @@ module.exports = {
         'tag-text-active': 'var(--tag-text-active)'
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro', 'Roboto', 'sans-serif'],
+        sans: ['Space Grotesk', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'SF Pro', 'Roboto', 'sans-serif'],
         mono: ['IBM Plex Mono', 'SF Mono', 'JetBrains Mono', 'ui-monospace', 'monospace']
       },
       boxShadow: {
@@ -47,4 +55,3 @@ module.exports = {
   },
   plugins: []
 };
-

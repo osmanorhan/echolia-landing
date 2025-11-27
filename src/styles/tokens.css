@@ -1,55 +1,85 @@
 :root {
-  /* Base Colors (Warm Dark) */
-  --color-bg-0: #0A0608;      /* warm-black base */
-  --color-bg-1: #110A0D;      /* main surface */
-  --color-bg-2: #1A1116;      /* elevated surface */
-  --color-bg-3: #22171D;      /* hover/active */
+  /* Base Colors (Warm Dark, higher readability) */
+  --color-bg-0: #05070C;      /* deep ink */
+  --color-bg-1: #0B0F18;      /* main surface */
+  --color-bg-2: #141B29;      /* elevated surface */
+  --color-bg-3: #1C2436;      /* hover/active */
 
   /* Legacy aliases for gradual migration */
   --color-bg-deep: var(--color-bg-0);
   --color-bg-surface: var(--color-bg-1);
   --color-bg-alt: var(--color-bg-2);
 
-  /* Text Colors (Rose-White Palette) */
-  --color-text-primary: #F5E9EE;   /* warm rose-white */
-  --color-text-secondary: #C5A8B2; /* dusty pink */
-  --color-text-tertiary: #8B6E78;  /* rose-gray */
+  /* Text Colors (Cool Rose-Graphite) */
+  --color-text-primary: #F5F2FF;   /* soft bone-white */
+  --color-text-secondary: #C2C7D6; /* misted violet-gray */
+  --color-text-tertiary: #8B92A5;  /* cool slate */
 
   /* Legacy aliases */
   --color-text-main: var(--color-text-primary);
   --color-text-muted: var(--color-text-secondary);
 
-  /* Accent Colors (Pink-Rose Glow) */
-  --accent-pink: #FF3E8E;  /* signature glow */
-  --accent-rose: #F28AAE;  /* soft glow */
-  --accent-red: #FF2F5E;   /* intensity / alerts */
-  --accent-cyan: #4CD7D0;  /* cyan accent for contrast */
-  --accent-purple: #B565D8; /* purple for depth */
+  /* Accent Colors (Higher contrast) */
+  --accent-pink: #FF5C9D;   /* signature glow */
+  --accent-rose: #F6A7C5;   /* soft glow */
+  --accent-red: #FF4A6A;    /* alerts */
+  --accent-cyan: #7DE3DA;   /* cyan accent */
+  --accent-purple: #B486FF; /* depth */
+  --accent-amber: #F6C177;  /* warm highlight */
+  --accent-sage: #9EE6BA;   /* calm success */
 
   /* Legacy alias */
   --accent-echo: var(--accent-pink);
   --accent-warm: var(--accent-rose);
 
+  /* RGB aliases for Tailwind opacity-aware utilities */
+  --color-bg-0-rgb: 5 7 12;
+  --color-bg-1-rgb: 11 15 24;
+  --color-bg-2-rgb: 20 27 41;
+  --color-bg-3-rgb: 28 36 54;
+
+  --color-bg-deep-rgb: var(--color-bg-0-rgb);
+  --color-bg-surface-rgb: var(--color-bg-1-rgb);
+  --color-bg-alt-rgb: var(--color-bg-2-rgb);
+
+  --color-text-primary-rgb: 245 242 255;
+  --color-text-secondary-rgb: 194 199 214;
+  --color-text-tertiary-rgb: 139 146 165;
+  --color-text-main-rgb: var(--color-text-primary-rgb);
+  --color-text-muted-rgb: var(--color-text-secondary-rgb);
+
+  --accent-pink-rgb: 255 92 157;
+  --accent-rose-rgb: 246 167 197;
+  --accent-red-rgb: 255 74 106;
+  --accent-cyan-rgb: 125 227 218;
+  --accent-purple-rgb: 180 134 255;
+  --accent-amber-rgb: 246 193 119;
+  --accent-sage-rgb: 158 230 186;
+  --accent-echo-rgb: var(--accent-pink-rgb);
+  --accent-warm-rgb: var(--accent-rose-rgb);
+
   /* Surface & Border Tokens */
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --card-border: rgba(255, 255, 255, 0.05);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.08);
   --color-border-faint: var(--card-border);
+  --panel-highlight: linear-gradient(135deg, rgba(255, 92, 157, 0.08), rgba(125, 227, 218, 0.08));
+  --grid-lines: rgba(255, 255, 255, 0.03);
 
   /* Glow Tokens */
-  --glow-ambient: 0 0 22px rgba(255, 62, 142, 0.16);
-  --glow-direct: 0 0 10px rgba(255, 62, 142, 0.45);
-  --glow-edge: inset 0 0 6px rgba(255, 62, 142, 0.35);
+  --glow-ambient: 0 0 32px rgba(125, 227, 218, 0.18);
+  --glow-direct: 0 0 16px rgba(255, 92, 157, 0.45);
+  --glow-edge: inset 0 0 10px rgba(255, 92, 157, 0.35);
 
   /* Tag Colors */
-  --tag-bg: rgba(255, 62, 142, 0.12);
+  --tag-bg: rgba(125, 227, 218, 0.08);
   --tag-text: var(--color-text-primary);
-  --tag-border: rgba(255, 62, 142, 0.25);
-  --tag-bg-active: rgba(255, 62, 142, 0.18);
+  --tag-border: rgba(125, 227, 218, 0.35);
+  --tag-bg-active: rgba(255, 92, 157, 0.12);
   --tag-text-active: var(--color-text-primary);
 
   /* FAB Tokens */
-  --fab-bg: rgba(255, 255, 255, 0.06);
-  --fab-border: rgba(255, 255, 255, 0.1);
+  --fab-bg: rgba(255, 255, 255, 0.08);
+  --fab-border: rgba(255, 255, 255, 0.14);
 
   /* Spacing Tokens */
   --space-xxs: 4px;
@@ -60,14 +90,15 @@
   --space-xl: 32px;
 
   /* Border Radius */
-  --radius-card: 16px;
-  --radius-tag: 8px;
-  --radius-button: 14px;
+  --radius-card: 18px;
+  --radius-tag: 9px;
+  --radius-button: 16px;
   --radius-input: 12px;
 
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro', 'Roboto', sans-serif;
+  --font-sans: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro', 'Roboto', sans-serif;
   --font-mono: 'IBM Plex Mono', 'SF Mono', 'JetBrains Mono', monospace;
+  --font-reading: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Roboto', sans-serif;
 }
 
 body {
@@ -80,8 +111,31 @@ body {
   inset: 0;
   pointer-events: none;
   background-image: url('/textures/noise.png');
-  opacity: 0.05;
+  opacity: 0.06;
   mix-blend-mode: overlay;
   z-index: 0;
 }
 
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-lines) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-lines) 1px, transparent 1px);
+  background-size: 140px 140px, 140px 140px;
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.halo {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 20%, rgba(125, 227, 218, 0.08), transparent 40%),
+              radial-gradient(circle at 80% 10%, rgba(255, 92, 157, 0.08), transparent 45%),
+              radial-gradient(circle at 50% 60%, rgba(180, 134, 255, 0.07), transparent 55%);
+  filter: blur(20px);
+  z-index: 0;
+}

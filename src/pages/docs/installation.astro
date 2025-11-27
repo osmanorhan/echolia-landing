@@ -1,0 +1,235 @@
+---
+import DocsLayout from '@layouts/DocsLayout.astro';
+import { DesktopInstallTabs } from '../../components/docs/DesktopInstallTabs';
+import { getCollection } from 'astro:content';
+
+const docs = await getCollection('docs');
+const doc = docs.find((d) => d.slug === 'installation');
+---
+
+<DocsLayout
+  title={`${doc?.data.title ?? 'Installation'} — Echolia Docs`}
+  description={doc?.data.description}
+  pageTitle={doc?.data.title ?? 'Installation'}
+  subtitle="Install Echolia on desktop and mobile using local or remote inference."
+  currentSlug="installation"
+>
+  <p>
+    Echolia is available for all major platforms as a desktop app and mobile app. Choose the path that matches your hardware and whether you want local or remote inference.
+  </p>
+
+  <section id="desktop-installation" class="space-y-6">
+    <h2>Desktop installation</h2>
+    <p>
+      For the desktop app, you can choose between <strong>local inference</strong> (via Ollama) and
+      <strong> remote inference</strong> (via OpenAI-compatible APIs like OpenAI, OpenRouter, or your own endpoints).
+      Use the tabs below for platform-specific steps.
+    </p>
+
+    <DesktopInstallTabs client:load />
+  </section>
+
+  <section id="ai-inference-setup-desktop" class="mt-14 pt-10 border-t border-white/10 space-y-6">
+    <h2>AI inference setup (desktop)</h2>
+    <p>
+      Echolia can think using models that run locally on your machine (via Ollama) or remotely (via OpenAI and other
+      OpenAI-compatible providers). You can switch between them anytime in Settings.
+    </p>
+    <p>
+      Echolia is tuned for small–medium models that run comfortably on a 16 GB Apple Silicon Mac (M series) or a
+      similar-spec PC.
+    </p>
+
+    <div class="doc-callout" data-tone="warn">
+      <div class="doc-callout__label">Hardware glance</div>
+      <p class="doc-callout__body">
+        If you’re on 8–16 GB RAM, stay with 3B–8B LLMs and compact embedding models. Larger models will swap and break the calm.
+      </p>
+    </div>
+
+    <h3 id="local-inference-with-ollama">Local inference with Ollama</h3>
+    <p>
+      Echolia uses Ollama (<a href="https://ollama.com">https://ollama.com</a>) as the local inference engine. This
+      keeps your data on your machine and allows offline work once models are downloaded.
+    </p>
+
+    <h4>Requirements</h4>
+    <ul class="doc-checklist">
+      <li>Desktop OS: macOS, Windows, or Linux</li>
+      <li>Modern multi-core CPU and either Apple Silicon/unified memory or a dedicated GPU</li>
+      <li>Enough memory for your chosen model; start with 3B–8B LLMs and matching embedding models</li>
+    </ul>
+
+    <h4>Install and run Ollama</h4>
+    <ol>
+      <li>
+        Install Ollama from <a href="https://ollama.com/download">https://ollama.com/download</a>.
+      </li>
+      <li>
+        Start Ollama:
+        <ul>
+          <li>On macOS: launch the Ollama app (menu bar).</li>
+          <li>On Windows/Linux: follow Ollama’s instructions or run <code>ollama serve</code>.</li>
+        </ul>
+      </li>
+      <li>
+        Confirm that Ollama is reachable at <code>http://localhost:11434</code>.
+      </li>
+    </ol>
+
+    <h4>Download models in Ollama</h4>
+    <p>In your terminal, install at least one LLM and one embedding model:</p>
+    <pre><code>ollama pull qwen3:8b
+ollama pull qwen3-embedding:4b</code></pre>
+
+    <h4>Configure Echolia to use Ollama</h4>
+    <ol>
+      <li>
+        On first launch, follow the onboarding flow. Echolia will:
+        <ul>
+          <li>Check whether Ollama is installed and running.</li>
+          <li>Offer to guide you through installing and starting Ollama.</li>
+          <li>Suggest recommended local models like Qwen 3.</li>
+        </ul>
+      </li>
+      <li>
+        Later, you can refine this in Settings:
+        <ul>
+          <li>Open the Echolia tray/menu bar icon → <strong>Settings…</strong></li>
+          <li>Use the <strong>Advanced</strong> tab to point to your Ollama base URL and pick LLM + embedding models.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <h3 id="remote-inference">Remote inference with OpenAI-compatible APIs</h3>
+    <p>
+      If you prefer hosted models, Echolia can use any OpenAI-compatible API. This includes OpenAI, OpenRouter, and your
+      own custom endpoints that follow the OpenAI API schema.
+    </p>
+
+    <div class="doc-dialog">
+      <div class="doc-dialog__avatar">✦</div>
+      <div class="doc-dialog__content">
+        <p class="doc-dialog__label">Tip</p>
+        <p class="doc-dialog__text">
+          Remote presets stay visible in Quick Setup. Local/remote switching now lives on a single row so you can see which mode you’re in at a glance.
+        </p>
+      </div>
+    </div>
+
+    <h4>Configure a remote provider</h4>
+    <ol>
+      <li>Open the Echolia tray/menu bar icon → <strong>Settings…</strong>.</li>
+      <li>Go to the <strong>Quick Setup</strong> tab.</li>
+      <li>
+        Choose a preset, for example:
+        <ul>
+          <li>OpenAI (GPT-5.1 – Best Quality)</li>
+          <li>OpenAI (GPT-5.1 Mini – Cost Effective)</li>
+        </ul>
+      </li>
+      <li>
+        Enter your API key and (optionally) a custom base URL for OpenAI-compatible services such as OpenRouter or other
+        third-party providers.
+      </li>
+    </ol>
+
+    <p>
+      Once applied, Echolia will route all inference and embeddings through the configured remote provider until you
+      switch back to a local setup.
+    </p>
+
+    <h3 id="switching">Switching between local and remote</h3>
+    <p>You can switch providers at any time in Settings:</p>
+    <ul>
+      <li>
+        To use <strong>local</strong> inference, pick an Ollama preset in Quick Setup or configure Ollama manually in
+        Advanced.
+      </li>
+      <li>
+        To use <strong>remote</strong> inference, pick an OpenAI (or compatible) preset and provide your API key and
+        base URL.
+      </li>
+    </ul>
+  </section>
+
+  <section id="mobile" class="mt-14 pt-10 border-t border-white/10 space-y-6">
+    <h2>Mobile</h2>
+
+    <div class="mobile-grid">
+      <div class="mobile-card">
+        <h3>iOS</h3>
+        <p><strong>Minimum:</strong> iOS 15 or iPadOS 15</p>
+        <div class="store-badge-row">
+          <a href="#" class="store-badge" aria-label="Download on the App Store">
+            <svg class="store-badge__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+            <div class="store-badge__text">
+              <span class="store-badge__eyebrow">Download on the</span>
+              <span class="store-badge__label">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="mobile-card">
+        <h3>Android</h3>
+        <p><strong>Minimum:</strong> Android 12.0</p>
+        <div class="store-badge-row">
+          <a href="#" class="store-badge" aria-label="Get it on Google Play">
+            <svg class="store-badge__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#34A853" d="M3.24 2.9l10.06 10.1-9.84 8.07c-.27-.42-.43-.93-.43-1.45V4.34c0-.55.08-1.1.21-1.44z"/>
+              <path fill="#4285F4" d="M20.7 10.23l-4.51 4.23-2.89-2.72L3.24 2.9c.16-.37.44-.69.76-.91.13-.09.26-.17.4-.24.13-.08.27-.15.41-.21.43-.18.9-.23 1.36-.15.27.05.53.14.77.28l13.76 8c.57.33.95.92.95 1.57 0 .66-.36 1.27-.95 1.59z"/>
+              <path fill="#FBBC05" d="M16.19 14.46l4.51 4.04c.59.32.95.93.95 1.59 0 .65-.38 1.25-.95 1.57l-13.8 8c-.41.24-.88.35-1.35.33-.47-.02-.93-.16-1.33-.42-.57-.33-.93-.92-.93-1.57V12.97l2.26 2.13 2.57 2.52 7.07-3.16z"/>
+              <path fill="#EA4335" d="M20.7 10.23c.59.32.95.93.95 1.59 0 .66-.36 1.27-.95 1.59l-4.51 4.04-2.89-2.72 2.89-2.72 4.51-1.78z"/>
+            </svg>
+            <div class="store-badge__text">
+              <span class="store-badge__eyebrow">Get it on</span>
+              <span class="store-badge__label">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocsLayout>
+
+<style>
+  :global(.mobile-grid) {
+    @apply grid gap-8 md:grid-cols-2;
+  }
+
+  :global(.mobile-card) {
+    @apply space-y-4;
+  }
+
+  :global(.store-badge-row) {
+    @apply flex flex-wrap gap-3 mb-4;
+  }
+
+  :global(.store-badge) {
+    @apply inline-flex items-center gap-3 px-4 py-3 rounded-xl border border-white/10 bg-black/70 transition-colors;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  :global(.store-badge:hover) {
+    border-color: rgba(125, 227, 218, 0.4);
+  }
+
+  :global(.store-badge__icon) {
+    @apply w-7 h-7;
+  }
+
+  :global(.store-badge__text) {
+    @apply leading-tight text-text-main;
+  }
+
+  :global(.store-badge__eyebrow) {
+    @apply block text-[11px] uppercase font-mono tracking-[0.2em] text-text-muted;
+  }
+
+  :global(.store-badge__label) {
+    @apply block text-base font-medium;
+  }
+</style>

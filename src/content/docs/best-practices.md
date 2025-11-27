@@ -5,9 +5,24 @@ section: Core Concepts
 order: 10
 ---
 
-# Best Practices
+Echolia is designed for the way thoughts actually work — messy, recursive, half-formed. The new doc styling matches that mood: softer gradients, clearer spacing, and dialog sections to keep advice grounded.
 
-Echolia is designed for the way thoughts actually work — messy, recursive, half-formed. These practices help you work *with* that nature, not against it.
+<div class="doc-callout">
+  <div class="doc-callout__label">Readability first</div>
+  <p class="doc-callout__body">
+    Typography now uses Space Grotesk with generous line height. Callouts and checklists separate steps so nothing blends into the dark.
+  </p>
+</div>
+
+<div class="doc-dialog">
+  <div class="doc-dialog__avatar">◎</div>
+  <div class="doc-dialog__content">
+    <p class="doc-dialog__label">Voice</p>
+    <p class="doc-dialog__text">
+      Think of these practices as quiet prompts, not orders. Let them drift into your workflow and adapt them as needed.
+    </p>
+  </div>
+</div>
 
 ---
 

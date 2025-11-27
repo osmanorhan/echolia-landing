@@ -28,8 +28,8 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
 <Base {title} {description}>
   <article class="mx-auto max-w-3xl px-4 pt-12 pb-16 md:pt-16">
     <header class="mb-8 space-y-3">
-      <p class="text-xs uppercase tracking-[0.25em] text-text-muted/80">Blog</p>
-      <h1 class="text-2xl md:text-3xl font-semibold text-text-main">
+      <p class="text-[11px] uppercase tracking-[0.3em] text-text-muted opacity-70">Blog</p>
+      <h1 class="text-3xl md:text-4xl font-semibold text-text-main leading-tight">
         {post.data.title}
       </h1>
       <div class="flex flex-wrap items-center gap-3 text-xs text-text-muted">
@@ -48,11 +48,18 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
       </div>
     </header>
 
-    <div class="prose prose-invert prose-sm md:prose-base max-w-none prose-headings:text-text-main prose-p:text-text-main/90 prose-strong:text-text-main prose-a:text-accent-echo hover:prose-a:text-accent-echo/80 prose-code:font-mono prose-code:text-accent-cyan prose-pre:bg-[#0E161D] prose-pre:border-l-2 prose-pre:border-accent-cyan/80 prose-pre:text-[13px] prose-pre:leading-relaxed">
+    <div class="doc-callout">
+      <div class="doc-callout__label">Readable run</div>
+      <p class="doc-callout__body">
+        Blog posts inherit the same contrast rules as docs: brighter headings, softer body text, and cyan-first links for clean scanning.
+      </p>
+    </div>
+
+    <div class="blog-prose">
       <Content />
     </div>
 
-    <nav class="mt-10 flex justify-between text-xs text-text-muted/80">
+    <nav class="mt-10 flex justify-between text-xs text-text-muted opacity-80">
       <a href="/blog" class="hover:text-accent-echo transition-colors">
         ← Back to all echoes
       </a>
@@ -62,3 +69,39 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
     </nav>
   </article>
 </Base>
+
+<style>
+  :global(.blog-prose) {
+    @apply text-text-main max-w-none text-[17px] leading-[1.75];
+    font-family: var(--font-sans);
+  }
+
+  :global(.blog-prose h2) {
+    @apply text-2xl md:text-[28px] font-semibold text-text-main mt-10 mb-3;
+  }
+
+  :global(.blog-prose h3) {
+    @apply text-xl md:text-2xl font-semibold text-text-main mt-8 mb-2;
+  }
+
+  :global(.blog-prose p) {
+    @apply text-text-main leading-relaxed opacity-90;
+  }
+
+  :global(.blog-prose a) {
+    @apply text-accent-cyan hover:text-accent-pink underline decoration-1 transition-colors;
+    text-decoration-color: rgba(125, 227, 218, 0.4);
+  }
+
+  :global(.blog-prose blockquote) {
+    @apply border-l-2 border-accent-cyan/60 bg-bg-surface/70 px-4 py-3 rounded-lg text-text-main opacity-90;
+  }
+
+  :global(.blog-prose code) {
+    @apply font-mono text-[13px] bg-bg-surface px-2 py-0.5 rounded border border-white/10 text-accent-cyan;
+  }
+
+  :global(.blog-prose pre) {
+    @apply bg-[#0D141F] border border-white/10 rounded-xl p-4 overflow-x-auto;
+  }
+</style>

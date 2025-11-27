@@ -10,9 +10,13 @@
     "lint": "echo \"No lint configured\""
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@radix-ui/react-tabs": "^1.1.13",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",
     "astro": "^4.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "three": "^0.181.1"
   },
   "devDependencies": {

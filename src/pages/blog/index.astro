@@ -9,28 +9,35 @@ const posts = (await getCollection('blog')).filter((p) => !p.data.draft).sort(
 
 <Base title="Echolia Blog — echoes from the mind-room" description="Slow, analog notes from the Echolia lab: design logs, release notes, and thoughts on quiet AI interfaces.">
   <section class="mx-auto max-w-3xl px-4 pt-12 pb-16 md:pt-16">
-    <header class="mb-8 space-y-3">
-      <p class="text-xs uppercase tracking-[0.25em] text-text-muted/80">Blog</p>
-      <h1 class="text-2xl md:text-3xl font-semibold text-text-main">Echoes from the lab.</h1>
-      <p class="max-w-xl text-sm text-text-muted">
-        Longer runs about interface philosophy, AI behavior and the strange ways thoughts echo back when you revisit them later.
+    <header class="mb-6 space-y-3">
+      <p class="text-[11px] uppercase tracking-[0.3em] text-text-muted opacity-70">Blog</p>
+      <h1 class="text-3xl md:text-4xl font-semibold text-text-main leading-tight">Echoes from the lab.</h1>
+      <p class="max-w-xl text-base text-text-muted leading-relaxed">
+        Longer runs about interface philosophy, AI behavior and the strange ways thoughts echo back when you revisit them later. Now with clearer type and brighter capsules for easier scanning.
       </p>
     </header>
+
+    <div class="doc-callout">
+      <div class="doc-callout__label">Readability refresh</div>
+      <p class="doc-callout__body">
+        Blog posts use the same Space Grotesk stack and contrast rules as the docs. Titles, dates, and tags now separate cleanly so entries don’t blur into one long list.
+      </p>
+    </div>
 
     <div class="flex flex-col gap-4 md:gap-5">
       {posts.map((post) => (
         <article class="thought-card thought-card-hover">
           <a href={`/blog/${post.slug}/`} class="block space-y-2">
             <div class="flex items-center justify-between gap-3">
-              <h2 class="text-base md:text-lg font-medium text-text-main">
+              <h2 class="text-lg md:text-xl font-semibold text-text-main">
                 {post.data.title}
               </h2>
-              <time datetime={post.data.pubDate.toISOString()} class="text-[11px] text-text-muted/80 font-mono">
+              <time datetime={post.data.pubDate.toISOString()} class="text-[12px] text-text-muted opacity-80 font-mono">
                 {post.data.pubDate.toISOString().slice(0, 10)}
               </time>
             </div>
             {post.data.description && (
-              <p class="text-sm text-text-muted leading-relaxed">
+              <p class="text-base text-text-muted leading-relaxed">
                 {post.data.description}
               </p>
             )}
@@ -49,4 +56,3 @@ const posts = (await getCollection('blog')).filter((p) => !p.data.draft).sort(
     </div>
   </section>
 </Base>
-
