@@ -49,35 +49,46 @@ const runs = [
             </h2>
           </header>
 
+          <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted/70 mb-2">
+            macOS ready · others warming up
+          </p>
+
           <div class="space-y-2">
-            <a href="#" class="download-card-compact">
-              <span class="download-icon-compact">⊞</span>
-              <div class="download-info">
-                <span class="download-label-compact">Windows</span>
-                <span class="download-meta-compact">.exe</span>
-              </div>
-            </a>
-            <a href="#" class="download-card-compact">
+            <a href="/download" class="download-card-compact download-card-live">
               <span class="download-icon-compact">⌘</span>
               <div class="download-info">
                 <span class="download-label-compact">macOS</span>
-                <span class="download-meta-compact">.dmg</span>
+                <span class="download-meta-compact">.dmg · Universal</span>
               </div>
+              <span class="download-badge download-badge-live">Ready</span>
             </a>
-            <a href="#" class="download-card-compact">
+
+            <div class="download-card-compact download-card-disabled" aria-disabled="true">
+              <span class="download-icon-compact">⊞</span>
+              <div class="download-info">
+                <span class="download-label-compact">Windows</span>
+                <span class="download-meta-compact">.exe installer</span>
+              </div>
+              <span class="download-badge download-badge-soon">Coming soon</span>
+            </div>
+
+            <div class="download-card-compact download-card-disabled" aria-disabled="true">
               <span class="download-icon-compact">◆</span>
               <div class="download-info">
                 <span class="download-label-compact">Linux</span>
                 <span class="download-meta-compact">.AppImage</span>
               </div>
-            </a>
-            <a href="#" class="download-card-compact">
+              <span class="download-badge download-badge-soon">Coming soon</span>
+            </div>
+
+            <div class="download-card-compact download-card-disabled" aria-disabled="true">
               <span class="download-icon-compact">◎</span>
               <div class="download-info">
                 <span class="download-label-compact">Mobile</span>
                 <span class="download-meta-compact">iOS/Android</span>
               </div>
-            </a>
+              <span class="download-badge download-badge-soon">Coming soon</span>
+            </div>
           </div>
 
           <a href="/download" class="block pt-3 font-mono text-[10px] text-accent-pink/60 hover:text-accent-cyan/80 leading-relaxed text-center transition-colors">
@@ -251,6 +262,12 @@ const runs = [
     cursor: pointer;
   }
 
+  .download-card-live {
+    background: rgba(76, 215, 208, 0.08);
+    border-color: rgba(76, 215, 208, 0.5);
+    box-shadow: 0 0 24px rgba(76, 215, 208, 0.25);
+  }
+
   .download-card-compact:hover {
     background: rgba(255, 62, 142, 0.1);
     border-color: rgba(255, 62, 142, 0.4);
@@ -258,11 +275,41 @@ const runs = [
     box-shadow: 0 0 20px rgba(255, 62, 142, 0.3);
   }
 
+  .download-card-live:hover {
+    background: rgba(76, 215, 208, 0.12);
+    border-color: rgba(76, 215, 208, 0.5);
+    box-shadow: 0 0 32px rgba(76, 215, 208, 0.35);
+  }
+
+  .download-card-disabled {
+    opacity: 0.55;
+    border-style: dashed;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .download-card-compact.download-card-disabled:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: none;
+    box-shadow: none;
+  }
+
   .download-icon-compact {
     font-size: 1.5rem;
     color: var(--accent-pink);
     text-shadow: 0 0 10px rgba(255, 62, 142, 0.6);
     flex-shrink: 0;
+  }
+
+  .download-card-live .download-icon-compact {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 12px rgba(76, 215, 208, 0.6);
+  }
+
+  .download-card-disabled .download-icon-compact {
+    color: var(--color-text-tertiary);
+    text-shadow: none;
   }
 
   .download-info {
@@ -283,6 +330,39 @@ const runs = [
     font-family: var(--font-mono);
     font-size: 0.625rem;
     color: var(--color-text-tertiary);
+  }
+
+  .download-card-disabled .download-label-compact {
+    color: var(--color-text-secondary);
+  }
+
+  .download-card-disabled .download-meta-compact {
+    color: var(--color-text-tertiary);
+  }
+
+  .download-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+
+  .download-badge-live {
+    border-color: rgba(76, 215, 208, 0.45);
+    background: rgba(76, 215, 208, 0.12);
+    color: var(--accent-cyan);
+  }
+
+  .download-badge-soon {
+    border-color: rgba(255, 62, 142, 0.35);
+    background: rgba(255, 62, 142, 0.08);
+    color: var(--accent-pink);
   }
 
   @media (max-width: 1024px) {
