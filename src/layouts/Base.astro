@@ -1,5 +1,6 @@
 ---
 import '@styles/tailwind.css';
+import LogoMark from '../components/LogoMark.astro';
 
 export interface Props {
   title?: string;
@@ -70,8 +71,9 @@ const ogImage = `${siteOrigin}/og-image.png`;
       <header class="sticky top-0 z-20 border-b border-white/5 bg-gradient-to-b from-[#110A0D]/95 to-[#0A0608]/98 backdrop-blur-xl">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
           <div class="flex items-center gap-3">
-            <div class="flex h-8 w-8 items-center justify-center rounded-full border border-accent-pink/20 bg-accent-pink/5">
-              <div class="h-4 w-4 rounded-full border border-accent-pink/40 opacity-80" />
+            <div class="relative flex h-10 w-10 items-center justify-center rounded-full border border-accent-cyan/30 bg-accent-cyan/5 shadow-[0_0_16px_rgba(125,227,218,0.28)]">
+              <LogoMark class="h-7 w-7 text-accent-cyan" />
+              <span class="pointer-events-none absolute inset-0 rounded-full bg-accent-pink/10 blur-xl" aria-hidden="true" />
             </div>
             <div class="flex flex-col">
               <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
@@ -101,8 +103,8 @@ const ogImage = `${siteOrigin}/og-image.png`;
             <!-- Brand -->
             <div class="md:col-span-1 space-y-3">
               <div class="flex items-center gap-2">
-                <div class="flex h-6 w-6 items-center justify-center rounded-full border border-accent-pink/20 bg-accent-pink/5">
-                  <div class="h-3 w-3 rounded-full border border-accent-pink/40 opacity-80" />
+                <div class="flex h-8 w-8 items-center justify-center rounded-full border border-accent-cyan/20 bg-accent-cyan/5 shadow-[0_0_12px_rgba(125,227,218,0.22)]">
+                  <LogoMark class="h-5 w-5 text-accent-cyan" />
                 </div>
                 <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
               </div>
