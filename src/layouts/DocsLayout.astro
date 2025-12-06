@@ -84,7 +84,7 @@ const docSection = currentDoc?.data.section ?? 'Documentation';
         </div>
         <div class="doc-actions">
           <a href="/download" class="doc-ghost">Download</a>
-          <a href="mailto:support@echolia.app" class="doc-ghost doc-ghost-secondary">Need help?</a>
+          <a href="mailto:support@echolia.com" class="doc-ghost doc-ghost-secondary">Need help?</a>
         </div>
       </div>
 
@@ -158,13 +158,11 @@ const docSection = currentDoc?.data.section ?? 'Documentation';
   }
 
   :global(.prose-echolia a) {
-    @apply text-accent-cyan hover:text-accent-pink transition-colors underline decoration-1;
-    text-decoration-color: rgba(125, 227, 218, 0.5);
-    text-underline-offset: 3px;
+    @apply text-accent-cyan hover:text-accent-pink transition-colors font-medium no-underline;
   }
 
   :global(.prose-echolia a:hover) {
-    text-decoration-color: rgba(255, 92, 157, 0.6);
+    text-decoration: none;
   }
 
   :global(.prose-echolia ul, .prose-echolia ol) {

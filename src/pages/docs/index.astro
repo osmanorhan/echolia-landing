@@ -4,18 +4,11 @@ import DocsLayout from '@layouts/DocsLayout.astro';
 
 <DocsLayout
   title="Documentation — Echolia"
-  description="Learn how to use Echolia, a warm mind-room for unfinished thoughts"
+  description="Set up Echolia on desktop and mobile, capture thoughts locally, and keep your mind-room flowing."
   pageTitle="Documentation"
-  subtitle="Fresh type, clearer spacing, and docerous-inspired callouts to keep the docs legible in the dark."
+  subtitle="Guides for installing, syncing, and using Echolia without losing momentum."
 >
   <div class="space-y-10">
-    <div class="doc-callout">
-      <div class="doc-callout__label">What changed</div>
-      <p class="doc-callout__body">
-        The docs, blog, and about pages now run on a higher-contrast palette and a new Space Grotesk type stack. Cards, nav links, and inline code have clearer separation so you can scan quickly.
-      </p>
-    </div>
-
     <div class="grid md:grid-cols-2 gap-6">
       <!-- Getting Started -->
       <a href="/docs/installation/" class="thought-card thought-card-hover block space-y-3">
@@ -28,7 +21,7 @@ import DocsLayout from '@layouts/DocsLayout.astro';
           <div>
             <h2 class="text-lg font-semibold text-text-main">Installation</h2>
             <p class="text-sm text-text-muted mt-1">
-              Platform steps with dialog tips, shoutouts, and higher-contrast checklists
+              Step-by-step setup for macOS, Windows, Linux, and mobile, plus permissions and updates.
             </p>
           </div>
         </div>
@@ -45,7 +38,7 @@ import DocsLayout from '@layouts/DocsLayout.astro';
           <div>
             <h2 class="text-lg font-semibold text-text-main">Quick Start</h2>
             <p class="text-sm text-text-muted mt-1">
-              Capture your first thought in under 5 minutes with calmer copy
+              Capture your first thought, pin echoes, and sync your devices in under five minutes.
             </p>
           </div>
         </div>
@@ -62,7 +55,7 @@ import DocsLayout from '@layouts/DocsLayout.astro';
           <div>
             <h2 class="text-lg font-semibold text-text-main">Best Practices</h2>
             <p class="text-sm text-text-muted mt-1">
-              Dialog-style advice, checklists, and warm guardrails for loops
+              How to tag fragments, keep flows tidy, link threads, and back up or export safely.
             </p>
           </div>
         </div>
@@ -80,7 +73,7 @@ import DocsLayout from '@layouts/DocsLayout.astro';
           <div>
             <h2 class="text-lg font-semibold text-text-main">Troubleshooting</h2>
             <p class="text-sm text-text-muted mt-1">
-              High-contrast fixes, quick commands, and plain-language checks
+              Fix common errors, offline sync hiccups, database locations, and log collection.
             </p>
           </div>
         </div>
@@ -90,9 +83,9 @@ import DocsLayout from '@layouts/DocsLayout.astro';
     <div class="doc-dialog">
       <div class="doc-dialog__avatar">☽</div>
       <div class="doc-dialog__content">
-        <p class="doc-dialog__label">Doc flow</p>
+        <p class="doc-dialog__label">Where to start</p>
         <p class="doc-dialog__text">
-          Scan the hero, skim the callouts, then drop into the capsules. Each page starts with context before the deep scroll, a small nod to docerous patterns that keep readers oriented.
+          Install first, then follow Quick Start to capture a real thought. Check Best Practices once you're using Echolia daily, and keep Troubleshooting nearby for fixes.
         </p>
       </div>
     </div>
@@ -102,13 +95,8 @@ import DocsLayout from '@layouts/DocsLayout.astro';
       <div class="thought-card bg-bg-surface/60 space-y-3">
         <h3 class="text-base font-semibold text-text-main">Need more help?</h3>
         <p class="text-sm text-text-muted leading-relaxed">
-          We're here to help. Reach out on <a href="https://twitter.com/echolia_app" class="text-accent-pink hover:text-accent-cyan transition-colors">Twitter</a> or email us at <a href="mailto:support@echolia.app" class="text-accent-pink hover:text-accent-cyan transition-colors">support@echolia.app</a>.
+          We're here to help. Reach out on <a href="https://x.com/echoliaX" class="text-accent-pink hover:text-accent-cyan transition-colors">Twitter</a> or email us at <a href="mailto:support@echolia.com" class="text-accent-pink hover:text-accent-cyan transition-colors">support@echolia.com</a>.
         </p>
-        <ul class="doc-checklist">
-          <li>Tell us which doc felt unclear</li>
-          <li>Mention your device + OS</li>
-          <li>Link a screenshot if contrast still feels off</li>
-        </ul>
       </div>
     </div>
   </div>

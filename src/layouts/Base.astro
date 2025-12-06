@@ -8,11 +8,12 @@ export interface Props {
 
 const {
   title = 'Echolia — a quiet room for unfinished thoughts',
-  description = 'Echolia is a dark, retro-futurist mind-room for capturing drifting thoughts. Desktop and mobile downloads for Windows, macOS, Linux, and mobile.',
+  description = 'Echolia is a dark, retro-futurist mind-room for capturing drifting thoughts. Local-first desktop and mobile app for capturing drifting thoughts with on-device intelligence.',
 } = Astro.props;
 
-const siteUrl = 'https://echolia.app';
-const ogImage = `${siteUrl}/og-image.png`;
+const siteOrigin = Astro.site?.origin ?? 'https://echolia.com';
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : `${siteOrigin}${Astro.url.pathname}`;
+const ogImage = `${siteOrigin}/og-image.png`;
 ---
 
 <!doctype html>
@@ -22,7 +23,9 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#0A0608" />
+    <meta name="robots" content="index,follow" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +40,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -49,14 +52,15 @@ const ogImage = `${siteUrl}/og-image.png`;
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'Echolia',
-        url: siteUrl,
+        url: siteOrigin,
         potentialAction: {
           '@type': 'SearchAction',
-          target: `${siteUrl}/blog?query={search_term_string}`,
+          target: `${siteOrigin}/blog?query={search_term_string}`,
           'query-input': 'required name=search_term_string',
         },
       })}
     </script>
+    <slot name="head" />
   </head>
   <body class="relative bg-bg-deep text-text-main">
     <div class="noise-layer"></div>
@@ -71,7 +75,7 @@ const ogImage = `${siteUrl}/og-image.png`;
             </div>
             <div class="flex flex-col">
               <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
-              <span class="text-sm text-text-main opacity-90">a warm mind-room</span>
+              <span class="text-sm text-text-main opacity-90">a warm mind-room for ...</span>
             </div>
           </div>
           <nav class="flex items-center gap-4 md:gap-5 text-xs md:text-sm">
@@ -123,12 +127,11 @@ const ogImage = `${siteUrl}/og-image.png`;
 
             <!-- Company -->
             <div class="space-y-3">
-              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">Company</h3>
+              <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">WE</h3>
               <ul class="space-y-2 text-xs">
                 <li><a href="/about" class="text-text-muted hover:text-accent-pink transition-colors">About</a></li>
                 <li><a href="/blog" class="text-text-muted hover:text-accent-pink transition-colors">Blog</a></li>
-                <li><a href="mailto:hello@echolia.app" class="text-text-muted hover:text-accent-pink transition-colors">Contact</a></li>
-                <li><a href="https://github.com/echolia/echolia" class="text-text-muted hover:text-accent-pink transition-colors">GitHub</a></li>
+                <li><a href="mailto:ping@echolia.com" class="text-text-muted hover:text-accent-pink transition-colors">Contact</a></li>
               </ul>
             </div>
 
@@ -137,23 +140,16 @@ const ogImage = `${siteUrl}/og-image.png`;
               <h3 class="text-xs font-mono uppercase tracking-wider text-text-muted opacity-60">Follow</h3>
               <ul class="space-y-2">
                 <li>
-                  <a href="https://twitter.com/echolia_app" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
+                  <a href="https://x.com/echoliaX" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                     <span>Twitter</span>
                   </a>
                 </li>
+
                 <li>
-                  <a href="https://github.com/echolia/echolia" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-                    </svg>
-                    <span>GitHub</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="mailto:hello@echolia.app" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
+                  <a href="mailto:ping@echolia.com" class="flex items-center gap-2 text-xs text-text-muted hover:text-accent-pink transition-colors">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>

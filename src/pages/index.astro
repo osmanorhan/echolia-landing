@@ -5,23 +5,23 @@ import ASCIIMindSpace from '../components/ASCIIMindSpace.astro';
 const runs = [
   {
     kind: 'release',
-    title: 'Echolia awakens: v0.1.0',
-    date: '2024-01-12',
+    title: 'Echolia awakens: v0.2.0',
+    date: '2025-12-03',
     tags: ['release', 'desktop'],
-    body: `The mind-room opens its doors. Quiet builds for Windows, macOS, and Linux—each a warm space for your drifting thoughts.`,
+    body: `The mind-room opens its doors. Initial builds for macOS and Linux. Windows coming soon...`,
     highlight: true
   },
   {
     kind: 'log',
     title: 'Warm darkness, soft glow',
-    date: '2024-01-05',
+    date: '2025-11-05',
     tags: ['philosophy', 'design'],
     body: `We chose rose-pink luminescence over cold blue. Every surface breathes warmth. Every glow feels like memory, not machinery.`
   },
   {
     kind: 'blog',
     title: 'A room, not a tool',
-    date: '2024-01-01',
+    date: '2025-12-02',
     tags: ['blog', 'philosophy'],
     body: `Echolia doesn't optimize or organize. It listens, echoes, and lets thoughts drift until they're ready to return.`,
     link: '/blog/first-echo'
@@ -29,7 +29,10 @@ const runs = [
 ];
 ---
 
-<Base>
+<Base
+  title="Echolia — local-first mind-room for unfinished thoughts"
+  description="Echolia is a warm, local-first app for capturing drifting thoughts and recursive ideas on desktop and mobile. Download for macOS today; Windows, Linux, and mobile coming soon."
+>
   <!-- Tumbolia Space with Downloads Overlay -->
   <div class="tumbolia-wrapper">
     <ASCIIMindSpace />
@@ -41,17 +44,10 @@ const runs = [
 
         <div class="portal-content">
           <header class="space-y-2 mb-4">
-            <p class="font-mono text-xs uppercase tracking-[0.22em] text-cyan-400/80">
-              System Access
-            </p>
             <h2 class="text-lg md:text-xl text-text-main font-medium">
               Download Echolia
             </h2>
           </header>
-
-          <p class="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted/70 mb-2">
-            macOS ready · others warming up
-          </p>
 
           <div class="space-y-2">
             <a href="https://updates.echolia.com/darwin/aarch64/Echolia.app.tar.gz" class="download-card-compact download-card-live">
@@ -92,7 +88,7 @@ const runs = [
           </div>
 
           <a href="/download" class="block pt-3 font-mono text-[10px] text-accent-pink/60 hover:text-accent-cyan/80 leading-relaxed text-center transition-colors">
-            View all downloads →
+            View all downloads ->
           </a>
         </div>
       </div>
@@ -114,34 +110,27 @@ const runs = [
         </p>
 
         <p class="text-base md:text-lg text-text-muted opacity-80 leading-relaxed max-w-xl mx-auto">
-          Where thoughts go when they fall between moments.
+          Echolia lives as a local app on your desktop and phone.
           <br />
-          Some return. Some don't.
+          Capture thoughts as they happen, build flowing maps of your mind, and step back through them whenever you want.
         </p>
 
         <p class="font-mono text-sm text-text-muted opacity-60 uppercase tracking-[0.3em]">
-          Local-first · Private · On-device intelligence
+          Local-first · Private · On-device intelligence when possible
         </p>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-        <a href="#downloads" class="cta-button cta-primary">
+        <a href="/download" class="cta-button cta-primary">
           <span class="cta-text">Enter the mind-room</span>
           <span class="cta-glow"></span>
         </a>
-        <a href="/blog" class="cta-button cta-secondary">
+        <a href="/about" class="cta-button cta-secondary">
           <span class="cta-text">Explore philosophy</span>
         </a>
       </div>
     </div>
   </section>
-
-  <!-- ASCII Art Divider -->
-  <div class="ascii-divider">
-    <pre class="ascii-art">
-    ·∘○◦~※⊹⋆✧✦★☆▪▫□■◇◆△▲▽▼·∘○◦~※⊹⋆✧✦★☆▪▫□■◇◆△▲▽▼
-    </pre>
-  </div>
 
   <!-- Mind Stream (Full Width) -->
   <section class="mx-auto max-w-5xl px-4 pb-16 md:pb-24">
@@ -152,7 +141,7 @@ const runs = [
             Live stream from the mind-room
           </p>
           <h2 class="text-2xl md:text-3xl font-medium text-text-main">
-            Echoes & Fragments
+            Fragments
           </h2>
         </header>
 
@@ -160,7 +149,7 @@ const runs = [
           {runs.map((run) => (
             <article
               class={
-                'thought-card thought-card-hover relative overflow-hidden backdrop-blur-sm ' +
+                'thought-card relative overflow-hidden backdrop-blur-sm ' +
                 (run.highlight ? 'animate-echo-pulse border-accent-pink/60' : '')
               }
             >
@@ -172,7 +161,7 @@ const runs = [
                   </div>
                   <h3 class="text-base md:text-lg font-medium text-text-main">
                     {run.link ? (
-                      <a href={run.link} class="hover:text-accent-pink transition-colors glitch-hover" data-text={run.title}>
+                      <a href={run.link} class="cursor-pointer">
                         {run.title}
                       </a>
                     ) : (
@@ -186,10 +175,10 @@ const runs = [
                   {run.link && (
                     <a
                       href={run.link}
-                      class="inline-flex items-center gap-1 font-mono text-xs text-accent-pink/80 hover:text-accent-pink transition-colors group"
+                      class="inline-flex items-center gap-1 font-mono text-xs text-accent-pink/80 cursor-pointer"
                     >
                       <span>Read more</span>
-                      <span aria-hidden="true" class="group-hover:translate-x-1 transition-transform">→</span>
+                      <span aria-hidden="true">-></span>
                     </a>
                   )}
                 </div>

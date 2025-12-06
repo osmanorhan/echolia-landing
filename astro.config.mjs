@@ -6,7 +6,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   srcDir: 'src',
   server: {
-    port: 4321
+    port: 4322
   },
-  site: 'https://echolia.app'
+  site: 'https://echolia.com'
 });

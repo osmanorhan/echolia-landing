@@ -41,9 +41,9 @@ pnpm check
 
 ### TypeScript Paths
 Configured in tsconfig.json:
-- `@layouts/*` → `src/layouts/*`
-- `@styles/*` → `src/styles/*`
-- `@content/*` → `src/content/*`
+- `@layouts/*` -> `src/layouts/*`
+- `@styles/*` -> `src/styles/*`
+- `@content/*` -> `src/content/*`
 
 ### Styling System
 
@@ -120,4 +120,4 @@ If adding interactive components (overlays, drawers, command palette):
 
 ## Site Configuration
 
-Site URL is configured in `astro.config.mjs` as `https://echolia.app`. Update this if deploying to a different domain.
+Site URL is configured in `astro.config.mjs` as `https://echolia.com`. Update this if deploying to a different domain.

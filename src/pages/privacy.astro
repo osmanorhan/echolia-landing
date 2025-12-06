@@ -4,11 +4,10 @@ import Base from '@layouts/Base.astro';
 
 <Base
   title="Privacy Policy — Echolia"
-  description="How Echolia handles your data, privacy, and security"
+  description="Privacy policy for Echolia"
 >
   <div class="mx-auto max-w-3xl px-4 py-12 md:py-16">
-    <!-- Header -->
-    <header class="mb-12 space-y-4">
+    <header class="mb-10 space-y-4">
       <h1 class="text-3xl md:text-4xl font-semibold text-text-main">
         Privacy Policy
       </h1>
@@ -16,323 +15,118 @@ import Base from '@layouts/Base.astro';
         Last updated: January 15, 2025
       </p>
       <p class="text-base md:text-lg text-text-muted leading-relaxed">
-        Echolia is built on a simple principle: <strong class="text-text-main">your thoughts are yours</strong>. We can't read them, we don't collect them, and we never will.
+        This policy explains how Echolia handles information in the app and on the website.
       </p>
     </header>
 
-    <!-- Content -->
-    <article class="space-y-12 text-text-muted">
-      <!-- TL;DR -->
-      <section class="thought-card bg-bg-surface/50 space-y-4">
-        <h2 class="text-xl font-semibold text-text-main flex items-center gap-2">
-          <svg class="w-5 h-5 text-accent-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          TL;DR
+    <article class="space-y-10 text-text-muted">
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          1. Scope
         </h2>
-        <ul class="space-y-2 text-sm leading-relaxed">
-          <li class="flex gap-3">
-            <span class="text-accent-pink">✓</span>
-            <span>All your data stays on your device (local-first)</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-accent-pink">✓</span>
-            <span>We don't have servers that store your thoughts</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-accent-pink">✓</span>
-            <span>When sync launches, it will be end-to-end encrypted</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-accent-pink">✓</span>
-            <span>No analytics, no tracking, no telemetry</span>
-          </li>
-          <li class="flex gap-3">
-            <span class="text-accent-pink">✓</span>
-            <span>Open source — you can verify everything</span>
-          </li>
-        </ul>
+        <p class="leading-relaxed">
+          This policy applies to the Echolia applications (the “App”) and to the Echolia website at echolia.com (the “Website”).
+        </p>
       </section>
 
-      <!-- Data Storage -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Where Your Data Lives
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          2. App data
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            Echolia is a <strong class="text-text-main">local-first application</strong>. This means:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>All your thoughts are stored in a database <strong class="text-text-main">on your device</strong></span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>We don't have cloud servers that store your content</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Your data never leaves your machine unless you explicitly enable sync (coming soon)</span>
-            </li>
-          </ul>
-          <p>
-            The database file locations:
-          </p>
-          <div class="space-y-2 font-mono text-xs bg-bg-surface border border-white/5 rounded-lg p-4">
-            <p><span class="text-text-muted opacity-60">macOS:</span> <span class="text-accent-cyan">~/Library/Application Support/Echolia/</span></p>
-            <p><span class="text-text-muted opacity-60">Windows:</span> <span class="text-accent-cyan">%APPDATA%\Echolia\</span></p>
-            <p><span class="text-text-muted opacity-60">Linux:</span> <span class="text-accent-cyan">~/.local/share/echolia/</span></p>
-          </div>
-          <p>
-            You own these files. You can back them up, export them, or delete them at any time.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          Echolia is designed as a local-first application. Content you create in the App is stored on your device in a local database.
+        </p>
+        <p class="leading-relaxed">
+          We do not receive or store your notes or other in-app content on our servers unless you explicitly use a sync or online feature that requires data transfer.
+        </p>
+        <p class="leading-relaxed">
+          You are responsible for backing up and securing your own data on your devices.
+        </p>
       </section>
 
-      <!-- Sync (Coming Soon) -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Sync (Coming Q2 2025)
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          3. Online services and sync
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            When we launch sync, it will be:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">End-to-end encrypted</strong> — Your thoughts are encrypted on your device before being sent</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Zero-knowledge</strong> — We can't decrypt your data, even if we wanted to</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Optional</strong> — You can use Echolia forever without syncing</span>
-            </li>
-          </ul>
-          <p>
-            We'll only store encrypted blobs that are meaningless without your private key, which never leaves your devices.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          If we provide optional online services such as sync or backups, those services will involve transmitting and storing data on our infrastructure or with third-party providers acting on our behalf.
+        </p>
+        <p class="leading-relaxed">
+          We will take reasonable technical and organizational measures to protect that data and will describe the specific processing in an updated version of this policy when those services are introduced.
+        </p>
       </section>
 
-      <!-- What We Don't Collect -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          What We Don't Collect
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          4. Website data and analytics
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            Unlike most apps, Echolia has <strong class="text-text-main">no analytics or telemetry</strong>:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-text-muted opacity-40 flex-shrink-0">✗</span>
-              <span>No usage tracking</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-text-muted opacity-40 flex-shrink-0">✗</span>
-              <span>No crash reports (unless you explicitly send them)</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-text-muted opacity-40 flex-shrink-0">✗</span>
-              <span>No IP addresses logged</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-text-muted opacity-40 flex-shrink-0">✗</span>
-              <span>No device fingerprinting</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-text-muted opacity-40 flex-shrink-0">✗</span>
-              <span>No third-party scripts or cookies</span>
-            </li>
-          </ul>
-          <p>
-            We genuinely don't know how many people use Echolia, what features they use, or what they write about. And that's by design.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          When you visit the Website, we may collect limited, aggregated usage information such as page views, referrers, and basic device information in order to understand overall traffic and improve the site.
+        </p>
+        <p class="leading-relaxed">
+          We use privacy-focused analytics tools, such as Plausible Analytics, that do not use cookies or create profiles based on your browsing across different sites.
+        </p>
+        <p class="leading-relaxed">
+          We do not sell or rent any analytics data to third parties.
+        </p>
       </section>
 
-      <!-- Website Analytics -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Website Analytics
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          5. Communications and support
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            This website (echolia.app) uses <strong class="text-text-main">privacy-respecting analytics</strong>:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>We use Plausible Analytics (GDPR-compliant, no cookies)</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>We track page views and referrers — that's it</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>No personal data, no cross-site tracking</span>
-            </li>
-          </ul>
-          <p class="text-sm text-text-muted opacity-80">
-            Note: The app itself has zero analytics. This only applies to the marketing website.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          If you contact us by email or through other communication channels, we process the information you provide (such as your name, email address, and message) for the purpose of responding to your request and improving Echolia.
+        </p>
+        <p class="leading-relaxed">
+          We may retain these communications for a reasonable period of time for support and record-keeping purposes. You can request deletion of your messages at any time.
+        </p>
       </section>
 
-      <!-- Open Source -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Open Source Verification
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          6. Third-party providers
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            Echolia is <strong class="text-text-main">open source</strong> (MIT license). You can:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Inspect the source code on <a href="https://github.com/echolia/echolia" class="text-accent-pink hover:text-accent-cyan transition-colors underline">GitHub</a></span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Verify there's no tracking or data exfiltration</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Build it yourself from source</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Audit the encryption implementation when sync launches</span>
-            </li>
-          </ul>
-          <p>
-            Don't trust us — verify the code yourself.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          We use third-party providers to host the Website, deliver email, and provide analytics. These providers process data on our behalf and in accordance with their own privacy policies.
+        </p>
+        <p class="leading-relaxed">
+          We aim to select providers that follow strong security and privacy practices and comply with applicable data protection laws.
+        </p>
       </section>
 
-      <!-- Your Rights -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Your Rights
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          7. Your rights
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            Since we don't collect your data, most privacy rights are automatic:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Right to access:</strong> All your data is in the database file on your device</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Right to export:</strong> Use File → Export in the app</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Right to deletion:</strong> Delete the app and database file</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span><strong class="text-text-main">Right to portability:</strong> Export as JSON, Markdown, or plain text</span>
-            </li>
-          </ul>
-        </div>
+        <p class="leading-relaxed">
+          Depending on your location, you may have rights under data protection laws, including the right to access, correct, or delete personal information we hold about you.
+        </p>
+        <p class="leading-relaxed">
+          For App content stored only on your device, you exercise control directly by exporting, backing up, or deleting your data within your operating system or the App.
+        </p>
       </section>
 
-      <!-- Children's Privacy -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Children's Privacy
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          8. Changes to this policy
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            Echolia doesn't collect any data from anyone, including children. Since it's local-first, there are no age restrictions on using the app.
-          </p>
-          <p>
-            Parents: Your child's thoughts stay on their device. We never see them.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          We may update this privacy policy from time to time. When we do, we will update the “Last updated” date above. In some cases, we may provide additional notice, such as on the Website or in the App.
+        </p>
       </section>
 
-      <!-- Changes to This Policy -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Changes to This Policy
+      <section class="space-y-3">
+        <h2 class="text-xl md:text-2xl font-semibold text-text-main">
+          9. Contact
         </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            If we ever change this privacy policy, we'll:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Update the "Last updated" date at the top</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Announce it on <a href="https://twitter.com/echolia_app" class="text-accent-pink hover:text-accent-cyan transition-colors underline">Twitter</a> and in the <a href="/changelog" class="text-accent-pink hover:text-accent-cyan transition-colors underline">changelog</a></span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Show a notice in the app on next launch</span>
-            </li>
-          </ul>
-          <p>
-            We won't make changes that compromise our local-first, privacy-respecting foundation.
-          </p>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section class="space-y-4">
-        <h2 class="text-2xl font-semibold text-text-main pb-3 border-b border-white/5">
-          Questions?
-        </h2>
-        <div class="space-y-3 leading-relaxed">
-          <p>
-            If you have privacy questions or concerns:
-          </p>
-          <ul class="space-y-2 ml-4">
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Email: <a href="mailto:privacy@echolia.app" class="text-accent-pink hover:text-accent-cyan transition-colors underline">privacy@echolia.app</a></span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>Twitter: <a href="https://twitter.com/echolia_app" class="text-accent-pink hover:text-accent-cyan transition-colors underline">@echolia_app</a></span>
-            </li>
-            <li class="flex gap-3">
-              <span class="text-accent-pink flex-shrink-0">→</span>
-              <span>GitHub: <a href="https://github.com/echolia/echolia" class="text-accent-pink hover:text-accent-cyan transition-colors underline">echolia/echolia</a></span>
-            </li>
-          </ul>
-          <p>
-            We're a small team building thoughtfully. We'll respond within 48 hours.
-          </p>
-        </div>
+        <p class="leading-relaxed">
+          If you have questions about this privacy policy or how we handle personal information, you can contact us at
+          <a href="mailto:ping@echolia.com" class="text-accent-pink hover:text-accent-cyan transition-colors underline">
+            ping@echolia.com
+          </a>.
+        </p>
       </section>
     </article>
-
-    <!-- Footer Note -->
-    <div class="mt-16 pt-8 border-t border-white/5">
-      <div class="thought-card bg-bg-surface/30 space-y-3 text-center">
-        <p class="text-sm text-text-muted leading-relaxed">
-          This privacy policy is written in plain language because we believe <strong class="text-text-main">privacy shouldn't require a law degree</strong> to understand.
-        </p>
-        <p class="text-xs text-text-muted opacity-70">
-          If anything is unclear, please <a href="mailto:privacy@echolia.app" class="text-accent-pink hover:text-accent-cyan transition-colors underline">ask us</a> and we'll clarify it.
-        </p>
-      </div>
-    </div>
   </div>
 </Base>

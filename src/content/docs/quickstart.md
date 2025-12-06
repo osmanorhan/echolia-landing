@@ -19,15 +19,15 @@ Start with one capture. This guide gets you from download to your first saved th
   <div class="doc-dialog__content">
     <p class="doc-dialog__label">Flow</p>
     <p class="doc-dialog__text">
-      Download → Open → Capture → Revisit. Keep it light; fragments are enough to start the echoes.
+      Download -> Open -> Capture -> Revisit. Keep it light; fragments are enough to start the echoes.
     </p>
   </div>
 </div>
 
 ## 1) Install and open Echolia
 
-1. Download the installer from the pinned downloads on the homepage (Windows, macOS, Linux, or mobile).
-2. Install and open the app. If you see a security prompt, choose "Open anyway" (macOS: right-click Open; Windows: "More info" → "Run anyway").
+1. Download the installer from the pinned downloads on the homepage (Windows, macOS, Linux).
+2. Install and open the app. If you see a security prompt, choose "Open anyway" (macOS: right-click Open; Windows: "More info" -> "Run anyway").
 3. Keep Echolia running so Quick Capture stays available.
 
 <ul class="doc-checklist">
@@ -39,43 +39,25 @@ Start with one capture. This guide gets you from download to your first saved th
 ## 2) Capture your first thought
 
 1. Press `Cmd+Shift+E` (macOS) or `Ctrl+Shift+E` (Windows/Linux) to open Quick Capture.
-2. Type a fragment or question. Add lightweight tags inline, e.g. `thinking about mind-gardens #design #looping`.
-3. Press `Enter` to save. Your thought appears at the top of the Stream.
-4. Click the card to open it. Add an echo if you want to expand the idea.
-
-<ul class="doc-checklist">
-  <li>Saved one thought with at least one tag</li>
-  <li>Reopened it and added a short echo</li>
-  <li>Confirmed it shows in the Stream list</li>
-</ul>
+2. App tries to register the shortcut on first run; if it fails, follow the os spesific settings to register it manually.
+3. Type a fragment, thoght, idea or reminder or question. Like "Read more about cognitive biases" or "do not forget to call mom". 
+4. Press `Enter` to save. Your thought appears at the top of the Stream. The app will handle rest of them. 
+5. Click the card to open it. You will see details view. 
+6. Keep going and repeat. 
 
 ## 3) Learn the views
 
-**Stream** (default)  
+**Stream**  
 Vertical list of everything you've captured. Most recent at the top.
+Keep adding thoughts here. Doesnt need to be perfect, doesnt need to be complete.
+When it accumulates, the app will start connecting the dots, and some echoes will start to appear.
+We also show some dots to show if embedding or other features are extracted. 
 
-**Tumbolia**  
-A calmer, animated space for idle browsing. Use it when you want to drift and spot patterns.
-
-**Search** (`Cmd/Ctrl + K`)  
-Type to find fragments, tags, or dates. Use filters to narrow by tag when the list grows.
-
-Switch views with `Cmd/Ctrl + /` or via the view toggle in the header.
-
-## 4) Keep the loop warm
-
-| Shortcut | Purpose |
-|----------|---------|
-| `Cmd/Ctrl + Shift + E` | Quick capture from anywhere |
-| `Cmd/Ctrl + N` | New thought in the main app |
-| `Cmd/Ctrl + K` | Search / command palette |
-| `Cmd/Ctrl + /` | Toggle Stream ↔ Tumbolia |
-| `Escape` | Close dialogs or return to Stream |
 
 <div class="doc-callout">
   <div class="doc-callout__label">Data stays local</div>
   <p class="doc-callout__body">
-    Thoughts are stored on your device. See Troubleshooting → Data Issues for backup locations and export tips.
+    Thoughts are stored on your device. See Troubleshooting -> Data Issues for backup locations and export tips.
   </p>
 </div>
 

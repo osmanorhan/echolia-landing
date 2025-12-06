@@ -62,11 +62,7 @@ export function DesktopInstallTabs() {
           <li>
             Install to <code>C:\Program Files\Echolia</code>
           </li>
-          <li>Create a desktop shortcut</li>
-          <li>Add Echolia to your system PATH</li>
-          <li>
-            Set up file associations for <code>.echo</code> files
-          </li>
+          <li>Create Start menu and desktop shortcuts</li>
         </ul>
       </Tabs.Content>
 
@@ -76,7 +72,7 @@ export function DesktopInstallTabs() {
         <h4>Requirements</h4>
         <ul>
           <li>macOS 11 (Big Sur) or later</li>
-          <li>Apple Silicon (M1/M2/M3) or Intel processor</li>
+          <li>Apple Silicon (M)</li>
           <li>200MB free disk space</li>
         </ul>
 
@@ -96,15 +92,10 @@ export function DesktopInstallTabs() {
           <li>
             <strong>First launch</strong>
             <br />
-            On first launch, you may need to right-click → Open to bypass Gatekeeper and grant permissions in
-            System Settings → Privacy &amp; Security.
+            On first launch, you may need to right-click and choose "Open" to bypass Gatekeeper and grant permissions in
+            System Settings &gt; Privacy &amp; Security.
           </li>
         </ol>
-
-        <h4>Installing via Homebrew</h4>
-        <pre>
-          <code>brew install --cask echolia</code>
-        </pre>
       </Tabs.Content>
 
       <Tabs.Content value="linux" className="space-y-4">
@@ -114,8 +105,8 @@ export function DesktopInstallTabs() {
         <pre>
           <code>
             {`# Add Echolia repository
-wget -qO- https://echolia.app/linux/key.asc | sudo apt-key add -
-echo "deb https://echolia.app/linux/deb stable main" | sudo tee /etc/apt/sources.list.d/echolia.list
+wget -qO- https://echolia.com/linux/key.asc | sudo apt-key add -
+echo "deb https://echolia.com/linux/deb stable main" | sudo tee /etc/apt/sources.list.d/echolia.list
 
 # Install
 sudo apt update
@@ -135,10 +126,10 @@ sudo apt install echolia`}
             <a href="/download">downloads page</a>.
           </li>
           <li>
-            Make it executable: <code>chmod +x Echolia.AppImage</code>
+            Make it executable: <code>chmod +x echolia.AppImage</code>
           </li>
           <li>
-            Run: <code>./Echolia.AppImage</code>
+            Run: <code>./echolia.AppImage</code>
           </li>
         </ol>
       </Tabs.Content>

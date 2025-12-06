@@ -30,12 +30,12 @@
   }
 
   .thought-card-hover {
-    @apply hover:-translate-y-1 hover:bg-bg-alt;
+    @apply hover:bg-bg-surface/90;
   }
 
   .thought-card-hover:hover {
-    border-color: rgba(255, 62, 142, 0.10);
-    box-shadow: var(--glow-ambient), 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow: var(--glow-ambient);
   }
 
   .tag-chip {

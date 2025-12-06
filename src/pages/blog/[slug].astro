@@ -23,9 +23,36 @@ const { Content } = await post.render();
 
 const title = `${post.data.title} — Echolia Blog`;
 const description = post.data.description ?? 'A note from the Echolia mind-room.';
+const siteOrigin = Astro.site?.origin ?? 'https://echolia.com';
+const postUrl = Astro.site ? new URL(`/blog/${post.slug}/`, Astro.site).toString() : `${siteOrigin}/blog/${post.slug}/`;
 ---
 
 <Base {title} {description}>
+  <Fragment slot="head">
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.data.title,
+        description,
+        datePublished: post.data.pubDate.toISOString(),
+        dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+        url: postUrl,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': postUrl
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Echolia'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Echolia'
+        }
+      })}
+    </script>
+  </Fragment>
   <article class="mx-auto max-w-3xl px-4 pt-12 pb-16 md:pt-16">
     <header class="mb-8 space-y-3">
       <p class="text-[11px] uppercase tracking-[0.3em] text-text-muted opacity-70">Blog</p>
@@ -48,13 +75,6 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
       </div>
     </header>
 
-    <div class="doc-callout">
-      <div class="doc-callout__label">Readable run</div>
-      <p class="doc-callout__body">
-        Blog posts inherit the same contrast rules as docs: brighter headings, softer body text, and cyan-first links for clean scanning.
-      </p>
-    </div>
-
     <div class="blog-prose">
       <Content />
     </div>
@@ -64,7 +84,7 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
         ← Back to all echoes
       </a>
       <a href="/" class="hover:text-accent-echo transition-colors">
-        Back to run stream →
+        Back to run stream ->
       </a>
     </nav>
   </article>
@@ -72,7 +92,7 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
 
 <style>
   :global(.blog-prose) {
-    @apply text-text-main max-w-none text-[17px] leading-[1.75];
+    @apply text-text-main max-w-none text-[17px] leading-[1.8];
     font-family: var(--font-sans);
   }
 
@@ -85,12 +105,21 @@ const description = post.data.description ?? 'A note from the Echolia mind-room.
   }
 
   :global(.blog-prose p) {
-    @apply text-text-main leading-relaxed opacity-90;
+    @apply text-text-main leading-relaxed opacity-90 mb-5;
   }
 
   :global(.blog-prose a) {
     @apply text-accent-cyan hover:text-accent-pink underline decoration-1 transition-colors;
     text-decoration-color: rgba(125, 227, 218, 0.4);
+  }
+
+  :global(.blog-prose ul),
+  :global(.blog-prose ol) {
+    @apply mb-6 pl-5 space-y-2 text-text-main leading-relaxed;
+  }
+
+  :global(.blog-prose li) {
+    @apply leading-relaxed;
   }
 
   :global(.blog-prose blockquote) {
