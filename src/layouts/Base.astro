@@ -69,17 +69,17 @@ const ogImage = `${siteOrigin}/og-image.png`;
     <div class="halo"></div>
     <div class="relative z-10 min-h-screen flex flex-col">
       <header class="sticky top-0 z-20 border-b border-white/5 bg-gradient-to-b from-[#110A0D]/95 to-[#0A0608]/98 backdrop-blur-xl">
-        <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
-          <div class="flex items-center gap-3">
-            <div class="relative flex h-10 w-10 items-center justify-center rounded-full border border-accent-cyan/30 bg-accent-cyan/5 shadow-[0_0_16px_rgba(125,227,218,0.28)]">
-              <LogoMark class="h-7 w-7 text-accent-cyan" />
+        <div class="flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 py-3 md:py-4">
+          <a href="/" class="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-deep rounded-full">
+            <div class="relative flex h-10 w-10 items-center justify-center rounded-full border border-accent-cyan/30 bg-accent-cyan/5 shadow-[0_0_16px_rgba(125,227,218,0.28)] lg:h-11 lg:w-11 xl:h-12 xl:w-12 transition-transform duration-200 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]">
+              <LogoMark class="h-7 w-7 text-accent-cyan lg:h-8 lg:w-8 xl:h-9 xl:w-9" />
               <span class="pointer-events-none absolute inset-0 rounded-full bg-accent-pink/10 blur-xl" aria-hidden="true" />
             </div>
-            <div class="flex flex-col">
-              <span class="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">Echolia</span>
-              <span class="text-sm text-text-main opacity-90">a warm mind-room for ...</span>
+            <div class="hidden sm:flex flex-col leading-tight">
+              <span class="font-mono text-[11px] uppercase tracking-[0.2em] text-text-muted">Echolia</span>
+              <span class="text-[11px] sm:text-xs md:text-[13px] text-text-muted opacity-80">a warm mind-room for ...</span>
             </div>
-          </div>
+          </a>
           <nav class="flex items-center gap-4 md:gap-5 text-xs md:text-sm">
             <a href="/" class="text-text-muted hover:text-text-main transition">Home</a>
             <a href="/docs" class="text-text-muted hover:text-text-main transition">Docs</a>
